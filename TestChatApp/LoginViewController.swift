@@ -76,7 +76,20 @@ class LoginViewController: UIViewController {
         }
     }
 
-    func login() {}
+    func login() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        FUserListener.shared.loginUser(email: email, password: password) { error in
+            DispatchQueue.main.async {
+                guard let error = error else {
+                    self.openApp()
+                    return
+                }
+                ProgressHUD.showError(error.localizedDescription)
+                self.resendButton.isHidden = false
+            }
+        }
+    }
 }
 
 // MARK: - Actions
@@ -192,6 +205,17 @@ private extension LoginViewController {
             self.repeatPasswordTextField.isHidden = false
             self.repeatPasswordSeparator.isHidden = false
         }
+    }
+}
+
+// MARK: - Navigation
+private extension LoginViewController {
+    func openApp() {
+
+    }
+
+    func openForgotPasswordScreen() {
+
     }
 }
 
