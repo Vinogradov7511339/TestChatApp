@@ -55,15 +55,40 @@ class LoginViewController: UIViewController {
             && repeatPasswordTextField.hasText
         }
     }
+
+    func register() {
+        guard let email = emailTextField.text else { return }
+        guard let password = passwordTextField.text else { return }
+        guard let repeatedPassword = repeatPasswordTextField.text else { return }
+        guard password == repeatedPassword else {
+            ProgressHUD.showError(Const.passwordMatchError)
+            return
+        }
+        FUserListener.shared.registerUser(email: email, password: password) { error in
+            DispatchQueue.main.async {
+                guard let error = error else {
+                    ProgressHUD.showSuccess(Const.verificationSended)
+                    self.resendButton.isHidden = false
+                    return
+                }
+                ProgressHUD.showError(error.localizedDescription)
+            }
+        }
+    }
+
+    func login() {}
 }
 
 // MARK: - Actions
 extension LoginViewController {
     @IBAction func loginButtonTouchUpInside(_ sender: UIButton) {
-        if isDataInputed(for: currentState) {
-
-        } else {
+        guard isDataInputed(for: currentState) else {
             ProgressHUD.showFailed(Const.emptyInputError)
+            return
+        }
+        switch currentState {
+        case .signIn: login()
+        case .signUp: register()
         }
     }
 
@@ -184,6 +209,8 @@ extension LoginViewController {
         static let signInQuestion = NSLocalizedString("", value: "Have an account?", comment: "")
 
         static let emptyInputError = NSLocalizedString("", value: "All fields are required", comment: "")
+        static let passwordMatchError = NSLocalizedString("", value: "Passwords dont match", comment: "")
+        static let verificationSended = NSLocalizedString("", value: "Verification sended", comment: "")
     }
 }
 

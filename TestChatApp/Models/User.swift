@@ -12,11 +12,11 @@ import FirebaseFirestoreSwift
 struct User: Codable, Equatable {
 
     let id: String
-    let username: String
+    var username: String
     let email: String
     let pushId: String?
-    let avatarLink: String?
-    let status: String
+    var avatarLink: String?
+    var status: String?
 
     static var currentId: String? {
         return Auth.auth().currentUser?.uid
