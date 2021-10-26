@@ -70,6 +70,10 @@ extension SettingsViewController {
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 0.0 : 10.0
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension SettingsViewController {
