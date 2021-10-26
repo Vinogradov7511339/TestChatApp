@@ -44,6 +44,12 @@ class LoginViewController: UIViewController {
         setupBGTapRecognizer()
         updateUI(for: currentState)
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        emailTextField.text = "vinogradov7511339@gmail.com"
+        passwordTextField.text = "123123123"
+    }
 }
 
 // MARK: - Helpers
@@ -239,10 +245,20 @@ extension LoginViewController: ResetPasswordViewControllerDelegate {
 // MARK: - Navigation
 private extension LoginViewController {
     func openApp() {
+        let controller = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "MainApp")
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true, completion: nil)
     }
 
     func openForgotPasswordScreen() {
-        // TODO: - add navigation
+        let controller = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "ResetPassword")
+        guard let controller = controller as? ResetPasswordViewController else {
+            return
+        }
+        controller.delegate = self
+        present(controller, animated: true, completion: nil)
     }
 }
 

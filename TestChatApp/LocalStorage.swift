@@ -13,7 +13,11 @@ class LocalStorage {
 
     private init() {}
 
-    // TODO: - add error handler
+    static var isUserExist: Bool {
+        let userDefaults = UserDefaults.standard
+        return userDefaults.object(forKey: kCurrentUser) != nil
+    }
+
     static func save(user: User, completion: @escaping (Error?) -> Void) {
         let encoder = JSONEncoder()
         do {

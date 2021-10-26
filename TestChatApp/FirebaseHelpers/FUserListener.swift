@@ -34,8 +34,9 @@ class FUserListener {
             self.loadUserFromFirestore(userId: result.user.uid) { result in
                 switch result {
                 case .success(let user):
-                    // TODO: - add logic
-                    print("user \(user)")
+                    LocalStorage.save(user: user) { error in
+                        completion(error)
+                    }
                 case .failure(let error):
                     completion(error)
                 }
