@@ -43,6 +43,28 @@ class FUserListener {
         }
     }
 
+    // MARK: - Resend verification code
+
+    func resendVerificationCode(_ email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().currentUser?.reload(completion: { error in
+            if let error = error {
+                completion(error)
+                return
+            }
+            Auth.auth().currentUser?.sendEmailVerification(completion: { error in
+                completion(error)
+            })
+        })
+    }
+
+    // MARK: - Reset password
+
+    func resetPassword(for email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            completion(error)
+        }
+    }
+
     // MARK: - Register
 
     func registerUser(email: String, password: String, completion: @escaping (Error?) -> Void) {
@@ -79,7 +101,10 @@ class FUserListener {
             }
         }
     }
+}
 
+// MARK: - Private
+private extension FUserListener {
     func saveUserToFirestore(_ user: User, completion: @escaping (Error?) -> Void) {
         do {
             try FirebaseReference(.user).document(user.id).setData(from: user)

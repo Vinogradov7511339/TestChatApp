@@ -185,6 +185,80 @@
             </objects>
             <point key="canvasLocation" x="121.73913043478262" y="123.88392857142857"/>
         </scene>
+        <!--Reset Password View Controller-->
+        <scene sceneID="1jG-dv-N8w">
+            <objects>
+                <viewController id="fH8-4z-C8X" customClass="ResetPasswordViewController" customModule="TestChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5Wx-la-D6X">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nU8-ly-oAv">
+                                <rect key="frame" x="16" y="74" width="382" height="44"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="32"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PQJ-S8-Xgl">
+                                <rect key="frame" x="16" y="126" width="382" height="103"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gIU-pS-18M">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="27.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wi9-dX-aqf">
+                                        <rect key="frame" x="0.0" y="35.5" width="382" height="18.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rh6-Qo-nfH">
+                                        <rect key="frame" x="0.0" y="62" width="382" height="2"/>
+                                        <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="2" id="tZb-mJ-M9j"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EOd-Vu-Pad">
+                                        <rect key="frame" x="131" y="72" width="120" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Send reset link"/>
+                                        <connections>
+                                            <action selector="resetButtonTouchUpInside:" destination="fH8-4z-C8X" eventType="touchUpInside" id="E2H-iW-Lqh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="wi9-dX-aqf" secondAttribute="trailing" id="MzL-SN-Igd"/>
+                                    <constraint firstAttribute="trailing" secondItem="Rh6-Qo-nfH" secondAttribute="trailing" id="Slj-cR-e3s"/>
+                                    <constraint firstItem="gIU-pS-18M" firstAttribute="leading" secondItem="PQJ-S8-Xgl" secondAttribute="leading" id="g2I-Bz-mXV"/>
+                                    <constraint firstItem="Rh6-Qo-nfH" firstAttribute="leading" secondItem="PQJ-S8-Xgl" secondAttribute="leading" id="lAB-s2-1OL"/>
+                                    <constraint firstItem="wi9-dX-aqf" firstAttribute="leading" secondItem="PQJ-S8-Xgl" secondAttribute="leading" id="p9b-If-fB0"/>
+                                    <constraint firstAttribute="trailing" secondItem="gIU-pS-18M" secondAttribute="trailing" id="puZ-cw-ygr"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UOv-4C-cqw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="PQJ-S8-Xgl" firstAttribute="top" secondItem="nU8-ly-oAv" secondAttribute="bottom" constant="8" symbolic="YES" id="1LZ-oK-Qol"/>
+                            <constraint firstItem="PQJ-S8-Xgl" firstAttribute="leading" secondItem="UOv-4C-cqw" secondAttribute="leading" constant="16" id="3U3-wr-Ts5"/>
+                            <constraint firstItem="UOv-4C-cqw" firstAttribute="trailing" secondItem="nU8-ly-oAv" secondAttribute="trailing" constant="16" id="4nK-I1-xmF"/>
+                            <constraint firstItem="nU8-ly-oAv" firstAttribute="top" secondItem="UOv-4C-cqw" secondAttribute="top" constant="30" id="9MS-yT-53W"/>
+                            <constraint firstItem="nU8-ly-oAv" firstAttribute="leading" secondItem="UOv-4C-cqw" secondAttribute="leading" constant="16" id="AQe-yb-fXU"/>
+                            <constraint firstItem="UOv-4C-cqw" firstAttribute="trailing" secondItem="PQJ-S8-Xgl" secondAttribute="trailing" constant="16" id="dfb-3z-ySt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailLabel" destination="gIU-pS-18M" id="aif-if-lRC"/>
+                        <outlet property="emailTextField" destination="wi9-dX-aqf" id="KUb-wx-Otx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="39A-GL-5zb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="831.88405797101461" y="123.88392857142857"/>
+        </scene>
     </scenes>
     <resources>
         <image name="loginBtn" width="294" height="62"/>

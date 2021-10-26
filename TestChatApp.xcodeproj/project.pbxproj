@@ -20,6 +20,7 @@
 		ADBC20562726CF1D003FEE82 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20552726CF1D003FEE82 /* FCollectionReference.swift */; };
 		ADBC20592726D3F5003FEE82 /* FUserListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20582726D3F5003FEE82 /* FUserListener.swift */; };
 		ADBC205B2726D8CE003FEE82 /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC205A2726D8CE003FEE82 /* LocalStorage.swift */; };
+		ADBC205F2727203D003FEE82 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC205E2727203D003FEE82 /* ResetPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		ADBC20552726CF1D003FEE82 /* FCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
 		ADBC20582726D3F5003FEE82 /* FUserListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FUserListener.swift; sourceTree = "<group>"; };
 		ADBC205A2726D8CE003FEE82 /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		ADBC205E2727203D003FEE82 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		FCFD8AFC024E6B231C80041C /* Pods-TestChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestChatApp.release.xcconfig"; path = "Target Support Files/Pods-TestChatApp/Pods-TestChatApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +96,7 @@
 			children = (
 				AD7150BA2725D47F0085E1C6 /* AppDelegate.swift */,
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
+				ADBC205E2727203D003FEE82 /* ResetPasswordViewController.swift */,
 				AD7150BE2725D47F0085E1C6 /* LoginViewController.swift */,
 				ADBC20532726CACD003FEE82 /* GlobalConstants.swift */,
 				ADBC205A2726D8CE003FEE82 /* LocalStorage.swift */,
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADBC205F2727203D003FEE82 /* ResetPasswordViewController.swift in Sources */,
 				ADBC20562726CF1D003FEE82 /* FCollectionReference.swift in Sources */,
 				ADBC20512726C7FB003FEE82 /* User.swift in Sources */,
 				AD7150BF2725D47F0085E1C6 /* LoginViewController.swift in Sources */,

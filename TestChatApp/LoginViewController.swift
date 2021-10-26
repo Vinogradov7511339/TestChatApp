@@ -44,7 +44,10 @@ class LoginViewController: UIViewController {
         setupBGTapRecognizer()
         updateUI(for: currentState)
     }
+}
 
+// MARK: - Helpers
+private extension LoginViewController {
     func isDataInputed(for state: ScreenState) -> Bool {
         switch state {
         case .signIn:
@@ -90,6 +93,20 @@ class LoginViewController: UIViewController {
             }
         }
     }
+
+    func resendVerificationCode() {
+        guard let email = emailTextField.text else { return }
+        FUserListener.shared.resendVerificationCode(email) { error in
+            DispatchQueue.main.async {
+                guard let error = error else {
+                    ProgressHUD.showSuccess(Const.verificationSended)
+                    self.resendButton.isHidden = false
+                    return
+                }
+                ProgressHUD.showError(error.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - Actions
@@ -106,11 +123,15 @@ extension LoginViewController {
     }
 
     @IBAction func forgotButtonTouchUpInside(_ sender: UIButton) {
-
+        openForgotPasswordScreen()
     }
 
     @IBAction func resendButtonTouchUpInside(_ sender: UIButton) {
-
+        guard isDataInputed(for: currentState) else {
+            ProgressHUD.showFailed(Const.emptyInputError)
+            return
+        }
+        resendVerificationCode()
     }
 
     @IBAction func signUpButtonTouchUpInside(_ sender: UIButton) {
@@ -208,14 +229,20 @@ private extension LoginViewController {
     }
 }
 
+// MARK: - ResetPasswordViewControllerDelegate
+extension LoginViewController: ResetPasswordViewControllerDelegate {
+    func resetPasswordLinkSended() {
+        ProgressHUD.showSuccess(Const.resetPasswordLinkSended)
+    }
+}
+
 // MARK: - Navigation
 private extension LoginViewController {
     func openApp() {
-
     }
 
     func openForgotPasswordScreen() {
-
+        // TODO: - add navigation
     }
 }
 
@@ -235,6 +262,7 @@ extension LoginViewController {
         static let emptyInputError = NSLocalizedString("", value: "All fields are required", comment: "")
         static let passwordMatchError = NSLocalizedString("", value: "Passwords dont match", comment: "")
         static let verificationSended = NSLocalizedString("", value: "Verification sended", comment: "")
+        static let resetPasswordLinkSended = NSLocalizedString("", value: "Reset link sent to email", comment: "")
     }
 }
 
