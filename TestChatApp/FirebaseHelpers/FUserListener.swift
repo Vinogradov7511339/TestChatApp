@@ -114,10 +114,8 @@ class FUserListener {
             }
         }
     }
-}
 
-// MARK: - Private
-private extension FUserListener {
+    // MARK: - Save user
     func saveUserToFirestore(_ user: User, completion: @escaping (Error?) -> Void) {
         do {
             try FirebaseReference(.user).document(user.id).setData(from: user)
@@ -126,7 +124,10 @@ private extension FUserListener {
             completion(error)
         }
     }
+}
 
+// MARK: - Private
+private extension FUserListener {
     func loadUserFromFirestore(userId: String, completion: @escaping (Result<User, Error>) -> Void) {
         FirebaseReference(.user).document(userId).getDocument { querySnapshot, error in
             if let error = error {

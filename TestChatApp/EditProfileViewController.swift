@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class EditProfileViewController: UITableViewController {
 
@@ -21,6 +22,11 @@ class EditProfileViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        configureTextField()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         updateUserInfo()
     }
 
@@ -29,6 +35,11 @@ class EditProfileViewController: UITableViewController {
         usernameTextField.text = user.username
         statusLabel.text = user.status ?? ""
         // TODO: - add avatar
+    }
+
+    func configureTextField() {
+        usernameTextField.delegate = self
+        usernameTextField.clearButtonMode = .whileEditing
     }
 }
 
@@ -52,5 +63,36 @@ extension EditProfileViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension EditProfileViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard textField === usernameTextField else { return true }
+        guard let text = textField.text else { return true }
+        guard var user = User.currentUser else { return true }
+        user.username = text
+        LocalStorage.save(user: user) { error in
+            if let error = error {
+                ProgressHUD.showError(error.localizedDescription)
+                return
+            }
+            FUserListener.shared.saveUserToFirestore(user) { error in
+                if let error = error {
+                    ProgressHUD.showError(error.localizedDescription)
+                    return
+                }
+                ProgressHUD.showSuccess(Const.changeNameSuccess)
+                textField.endEditing(true)
+            }
+        }
+        return true
+    }
+}
+
+extension EditProfileViewController {
+    enum Const {
+        static let changeNameSuccess = NSLocalizedString("", value: "You name changed", comment: "")
     }
 }
