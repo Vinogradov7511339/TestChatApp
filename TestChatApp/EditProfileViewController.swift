@@ -7,14 +7,19 @@
 
 import UIKit
 import ProgressHUD
+import Gallery
 
 class EditProfileViewController: UITableViewController {
 
     // MARK: - Views
+
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var usernameTextField: UITextField!
-    
+
+    // MARK: - Private variables
+
+    var gallery: GalleryController?
     
 
     // MARK: - Lifecycle
@@ -41,11 +46,49 @@ class EditProfileViewController: UITableViewController {
         usernameTextField.delegate = self
         usernameTextField.clearButtonMode = .whileEditing
     }
+
+    func showImageGallery() {
+        gallery = GalleryController()
+        gallery?.delegate = self
+        Config.tabsToShow = [.cameraTab, .imageTab]
+        Config.Camera.imageLimit = 1
+        Config.initialTab = .imageTab
+
+        present(gallery!, animated: true, completion: nil)
+    }
 }
 
 // MARK: - Actions
 extension EditProfileViewController {
     @IBAction func editButtonTouchUpInside(_ sender: UIButton) {
+        showImageGallery()
+    }
+}
+
+// MARK: - GalleryControllerDelegate
+extension EditProfileViewController: GalleryControllerDelegate {
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        controller.dismiss(animated: true, completion: nil)
+        guard let image = images.first else { return }
+        image.resolve { uiImage in
+            guard let uiImage = uiImage else {
+                ProgressHUD.showError(Const.corruptedImage)
+                return
+            }
+            self.avatarImageView.image = uiImage
+        }
+    }
+
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -94,5 +137,6 @@ extension EditProfileViewController: UITextFieldDelegate {
 extension EditProfileViewController {
     enum Const {
         static let changeNameSuccess = NSLocalizedString("", value: "You name changed", comment: "")
+        static let corruptedImage = NSLocalizedString("", value: "Corrupted image", comment: "")
     }
 }
