@@ -28,6 +28,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {}
 
+    func logout() {
+        let controller = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "loginController")
+        window?.rootViewController = controller
+    }
+
 
     // MARK: - Autologin
 

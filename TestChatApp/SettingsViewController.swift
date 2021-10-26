@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SettingsViewController: UITableViewController {
 
@@ -45,7 +46,17 @@ extension SettingsViewController {
 
     @IBAction func policyButtonTouchUpInside(_ sender: UIButton) {}
 
-    @IBAction func logoutButtonTouchUpInside(_ sender: UIButton) {}
+    @IBAction func logoutButtonTouchUpInside(_ sender: UIButton) {
+        FUserListener.shared.logout { error in
+            if let error = error {
+                ProgressHUD.showError(error.localizedDescription)
+                return
+            }
+            DispatchQueue.main.async {
+                (self.view.window?.windowScene?.delegate as? SceneDelegate)?.logout()
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate

@@ -28,4 +28,8 @@ class LocalStorage {
             completion(error)
         }
     }
+
+    static func clear() {
+        UserDefaults.standard.removeObject(forKey: kCurrentUser)
+    }
 }

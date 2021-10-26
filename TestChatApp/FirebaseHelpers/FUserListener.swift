@@ -44,6 +44,18 @@ class FUserListener {
         }
     }
 
+    // MARK: - Logout
+
+    func logout(completion: @escaping (Error?) -> Void) {
+        do {
+            try Auth.auth().signOut()
+            LocalStorage.clear()
+            completion(nil)
+        } catch {
+            completion(error)
+        }
+    }
+
     // MARK: - Resend verification code
 
     func resendVerificationCode(_ email: String, completion: @escaping (Error?) -> Void) {
