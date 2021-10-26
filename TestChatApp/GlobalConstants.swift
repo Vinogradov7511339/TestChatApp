@@ -8,3 +8,4 @@
 import Foundation
 
 public let kCurrentUser = "currentUser"
+public let kFilePath = "gs://testchat-9ace1.appspot.com"

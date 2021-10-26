@@ -56,6 +56,32 @@ class EditProfileViewController: UITableViewController {
 
         present(gallery!, animated: true, completion: nil)
     }
+
+    func uploadPhoto(_ image: UIImage) {
+        guard let id = User.currentId else { return }
+        let directory = "Avatars/_" + id + ".jpg"
+        FileStorage.uploadImage(image, directory: directory) { result in
+            switch result {
+            case .success(let filePath):
+                if var user = User.currentUser {
+                    user.avatarLink = filePath
+                    LocalStorage.save(user: user) { error in
+                        if let error = error {
+                            ProgressHUD.showError(error.localizedDescription)
+                            return
+                        }
+                        FUserListener.shared.saveUserToFirestore(user) { error in
+                            if let error = error {
+                                ProgressHUD.showError(error.localizedDescription)
+                            }
+                        }
+                    }
+                }
+            case .failure(let error):
+                ProgressHUD.showError(error.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - Actions
@@ -75,6 +101,7 @@ extension EditProfileViewController: GalleryControllerDelegate {
                 ProgressHUD.showError(Const.corruptedImage)
                 return
             }
+            self.uploadPhoto(uiImage)
             self.avatarImageView.image = uiImage
         }
     }
