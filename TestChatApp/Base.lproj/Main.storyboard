@@ -185,7 +185,7 @@
             </objects>
             <point key="canvasLocation" x="121.73913043478262" y="123.88392857142857"/>
         </scene>
-        <!--Item 2-->
+        <!--Channels-->
         <scene sceneID="bXr-p7-KsG">
             <objects>
                 <viewController id="7rP-u3-mh2" sceneMemberID="viewController">
@@ -195,13 +195,13 @@
                         <viewLayoutGuide key="safeArea" id="sAl-BC-I0A"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="NVD-Em-Kc6"/>
+                    <tabBarItem key="tabBarItem" title="Channels" image="quote.bubble" catalog="system" id="NVD-Em-Kc6"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjU-wA-b8I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="428"/>
+            <point key="canvasLocation" x="1616" y="-230"/>
         </scene>
-        <!--Item 1-->
+        <!--Chats-->
         <scene sceneID="Fap-aB-uvK">
             <objects>
                 <viewController id="ySA-fY-f5a" sceneMemberID="viewController">
@@ -211,11 +211,11 @@
                         <viewLayoutGuide key="safeArea" id="EWT-fP-62J"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="8v3-g3-LDH"/>
+                    <tabBarItem key="tabBarItem" title="Chats" image="message" catalog="system" id="8v3-g3-LDH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xs-EP-hGO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1746" y="-179"/>
+            <point key="canvasLocation" x="1616" y="-837"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Hgm-NG-bxI">
@@ -229,11 +229,71 @@
                     <connections>
                         <segue destination="ySA-fY-f5a" kind="relationship" relationship="viewControllers" id="FCY-nf-FEY"/>
                         <segue destination="7rP-u3-mh2" kind="relationship" relationship="viewControllers" id="EJj-gI-hTl"/>
+                        <segue destination="GA2-Ee-bik" kind="relationship" relationship="viewControllers" id="eHs-5t-vld"/>
+                        <segue destination="Se6-XA-YCA" kind="relationship" relationship="viewControllers" id="VbP-ug-r4b"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G53-mI-RLp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857" y="125"/>
+        </scene>
+        <!--Users-->
+        <scene sceneID="u2c-aw-nBl">
+            <objects>
+                <tableViewController id="GA2-Ee-bik" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="TCI-gm-CeL">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Hsk-9n-7hV">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hsk-9n-7hV" id="Z4K-JA-uiA">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="GA2-Ee-bik" id="1NU-SY-v7k"/>
+                            <outlet property="delegate" destination="GA2-Ee-bik" id="VBb-vI-PQB"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Users" image="person.2" catalog="system" id="w5W-Q3-pty"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nUR-7R-b8H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1616" y="435"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="ZVq-bN-Cgy">
+            <objects>
+                <tableViewController id="Se6-XA-YCA" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="2zr-yr-bOy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="8Ai-Yn-q9y">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Ai-Yn-q9y" id="AYq-QX-BG2">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Se6-XA-YCA" id="Cwk-Yk-Cqi"/>
+                            <outlet property="delegate" destination="Se6-XA-YCA" id="tlQ-vd-bNh"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="jaj-vG-q8o"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i5n-vh-Eip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1616" y="1089"/>
         </scene>
         <!--Reset Password View Controller-->
         <scene sceneID="1jG-dv-N8w">
@@ -311,7 +371,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="gear" catalog="system" width="128" height="119"/>
         <image name="loginBtn" width="294" height="62"/>
+        <image name="message" catalog="system" width="128" height="113"/>
+        <image name="person.2" catalog="system" width="128" height="81"/>
+        <image name="quote.bubble" catalog="system" width="128" height="110"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
