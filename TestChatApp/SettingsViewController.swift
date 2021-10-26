@@ -36,7 +36,17 @@ class SettingsViewController: UITableViewController {
         guard let user = User.currentUser else { return }
         usernameLabel.text = user.username
         statusLabel.text = user.status
-        // TODO: - add avatar
+        guard let avatarURL = user.avatarLink else { return }
+        FileStorage.downloadImage(avatarURL) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let image):
+                    self.avatarImageView.image = image
+                case .failure(let error):
+                    ProgressHUD.showError(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 

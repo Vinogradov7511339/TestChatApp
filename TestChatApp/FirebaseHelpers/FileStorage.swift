@@ -11,6 +11,8 @@ import FirebaseStorage
 import ProgressHUD
 
 struct NoUploadLinkError: Error {}
+struct ConvertImageError: Error {}
+struct CorruptedURLError: Error {}
 
 class FileStorage {
 
@@ -51,6 +53,35 @@ class FileStorage {
             guard let progress = snapshot.progress else { return }
             let percent = progress.completedUnitCount / progress.totalUnitCount
             ProgressHUD.showProgress(CGFloat(percent))
+        }
+    }
+
+    class func downloadImage(_ url: String, completion: @escaping (Result<UIImage, Error>) -> Void) {
+        if let fileName = fileName(from: url), isFileExist(fileName) {
+            let filePath = filePath(for: fileName)
+            if let image = UIImage(contentsOfFile: filePath) {
+                completion(.success(image))
+            } else {
+                completion(.failure(ConvertImageError()))
+            }
+        } else {
+            guard let imageURL = URL(string: url) else {
+                completion(.failure(CorruptedURLError()))
+                return
+            }
+            let queue = DispatchQueue(label: "imageDownloadQueue")
+            queue.async {
+                if let data = NSData(contentsOf: imageURL), let fileName = fileName(from: url) {
+                    FileStorage.save(file: data, name: fileName)
+                    if let image = UIImage(data: data as Data) {
+                        completion(.success(image))
+                    } else {
+                        completion(.failure(ConvertImageError()))
+                    }
+                } else {
+                    completion(.failure(ConvertImageError()))
+                }
+            }
         }
     }
 
