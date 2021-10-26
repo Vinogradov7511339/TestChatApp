@@ -73,7 +73,9 @@ class EditProfileViewController: UITableViewController {
                         FUserListener.shared.saveUserToFirestore(user) { error in
                             if let error = error {
                                 ProgressHUD.showError(error.localizedDescription)
+                                return
                             }
+                            FileStorage.save(file: image.jpegData(compressionQuality: 1.0)! as NSData, name: id)
                         }
                     }
                 }

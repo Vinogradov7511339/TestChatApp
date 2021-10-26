@@ -16,6 +16,13 @@ class FileStorage {
 
     private static let storage = Storage.storage()
 
+    class func save(file: NSData, name: String) {
+        let path = documentsURL.appendingPathComponent(name, isDirectory: false)
+        file.write(to: path, atomically: true)
+    }
+
+    // MARK: - Images
+
     class func uploadImage(_ image: UIImage, directory: String, completion: @escaping (Result<String, Error>) -> Void) {
         let storageRef = storage.reference(forURL: kFilePath).child(directory)
         let data = image.jpegData(compressionQuality: 0.6)
@@ -45,5 +52,26 @@ class FileStorage {
             let percent = progress.completedUnitCount / progress.totalUnitCount
             ProgressHUD.showProgress(CGFloat(percent))
         }
+    }
+
+    // MARK: - Videos
+    // MARK: - Audio
+}
+
+// MARK: - Helpers
+extension FileStorage {
+    static var documentsURL: URL {
+        FileManager.default.urls(
+            for: .documentDirectory,
+               in: .userDomainMask).last!
+    }
+
+    static func filePath(for name: String) -> String {
+        return documentsURL.appendingPathComponent(name).path
+    }
+
+    static func isFileExist(_ path: String) -> Bool {
+        let fullPath = filePath(for: path)
+        return FileManager.default.fileExists(atPath: fullPath)
     }
 }
