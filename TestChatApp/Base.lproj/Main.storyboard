@@ -230,7 +230,7 @@
                     <connections>
                         <segue destination="ySA-fY-f5a" kind="relationship" relationship="viewControllers" id="FCY-nf-FEY"/>
                         <segue destination="7rP-u3-mh2" kind="relationship" relationship="viewControllers" id="EJj-gI-hTl"/>
-                        <segue destination="GA2-Ee-bik" kind="relationship" relationship="viewControllers" id="eHs-5t-vld"/>
+                        <segue destination="uwg-LA-Z7M" kind="relationship" relationship="viewControllers" id="eHs-5t-vld"/>
                         <segue destination="sbx-3f-ewB" kind="relationship" relationship="viewControllers" id="VbP-ug-r4b"/>
                     </connections>
                 </tabBarController>
@@ -241,19 +241,55 @@
         <!--Users-->
         <scene sceneID="u2c-aw-nBl">
             <objects>
-                <tableViewController id="GA2-Ee-bik" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="TCI-gm-CeL">
+                <tableViewController id="GA2-Ee-bik" customClass="UsersViewController" customModule="TestChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="TCI-gm-CeL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="tableviewBG"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Hsk-9n-7hV">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="userCell" id="Hsk-9n-7hV" customClass="UserCell" customModule="TestChatApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Hsk-9n-7hV" id="Z4K-JA-uiA">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="384.5" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="l4b-lT-j5H">
+                                            <rect key="frame" x="20" y="10" width="60" height="60"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="dcV-qr-WrJ"/>
+                                                <constraint firstAttribute="height" constant="60" id="jje-wh-3BR"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yWi-0c-cQu">
+                                            <rect key="frame" x="88" y="10" width="288.5" height="25"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="En2-aq-qfS">
+                                            <rect key="frame" x="88" y="48" width="288.5" height="22"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="l4b-lT-j5H" firstAttribute="centerY" secondItem="Z4K-JA-uiA" secondAttribute="centerY" id="1dR-V5-aRX"/>
+                                        <constraint firstItem="l4b-lT-j5H" firstAttribute="leading" secondItem="Z4K-JA-uiA" secondAttribute="leading" constant="20" symbolic="YES" id="K0e-r6-3F7"/>
+                                        <constraint firstItem="En2-aq-qfS" firstAttribute="leading" secondItem="l4b-lT-j5H" secondAttribute="trailing" constant="8" symbolic="YES" id="TZI-jQ-bNe"/>
+                                        <constraint firstAttribute="trailing" secondItem="yWi-0c-cQu" secondAttribute="trailing" constant="8" id="Xf7-2E-5IU"/>
+                                        <constraint firstAttribute="bottom" secondItem="En2-aq-qfS" secondAttribute="bottom" constant="10" id="dEc-HM-b9t"/>
+                                        <constraint firstItem="yWi-0c-cQu" firstAttribute="top" secondItem="Z4K-JA-uiA" secondAttribute="top" constant="10" id="h5h-YC-UXt"/>
+                                        <constraint firstAttribute="trailing" secondItem="En2-aq-qfS" secondAttribute="trailing" constant="8" id="uw3-Sw-mwa"/>
+                                        <constraint firstItem="yWi-0c-cQu" firstAttribute="leading" secondItem="l4b-lT-j5H" secondAttribute="trailing" constant="8" symbolic="YES" id="wKd-9z-htZ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="avatarImageView" destination="l4b-lT-j5H" id="a4n-eK-Wh3"/>
+                                    <outlet property="statusLabel" destination="En2-aq-qfS" id="QFm-Mp-FZV"/>
+                                    <outlet property="usernameLabel" destination="yWi-0c-cQu" id="0SQ-z4-cxQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -261,11 +297,11 @@
                             <outlet property="delegate" destination="GA2-Ee-bik" id="VBb-vI-PQB"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Users" image="person.2" catalog="system" id="w5W-Q3-pty"/>
+                    <navigationItem key="navigationItem" title="Users" id="vxp-hE-1uY"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nUR-7R-b8H" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1616" y="435"/>
+            <point key="canvasLocation" x="2526.0869565217395" y="434.59821428571428"/>
         </scene>
         <!--Settings-->
         <scene sceneID="ZVq-bN-Cgy">
@@ -701,6 +737,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYs-o3-DTi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1615.9420289855075" y="1088.8392857142856"/>
+        </scene>
+        <!--Users-->
+        <scene sceneID="jgV-sd-yrD">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uwg-LA-Z7M" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Users" image="person.2" catalog="system" id="w5W-Q3-pty"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="D4a-hV-wNy">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GA2-Ee-bik" kind="relationship" relationship="rootViewController" id="x63-FJ-5Je"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bNT-mI-N0Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1615.9420289855075" y="434.59821428571428"/>
         </scene>
     </scenes>
     <resources>

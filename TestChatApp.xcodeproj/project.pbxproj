@@ -22,6 +22,9 @@
 		AD801637272870BC00A6AA82 /* UIImage+circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801636272870BC00A6AA82 /* UIImage+circle.swift */; };
 		AD8016392729218300A6AA82 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8016382729218300A6AA82 /* Status.swift */; };
 		AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80163A2729253A00A6AA82 /* StatusViewController.swift */; };
+		AD80163E27293E7600A6AA82 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80163D27293E7600A6AA82 /* UserCell.swift */; };
+		AD80164027293EB100A6AA82 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80163F27293EB100A6AA82 /* UsersViewController.swift */; };
+		AD8016422729408000A6AA82 /* UIImage+names.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8016412729408000A6AA82 /* UIImage+names.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -50,6 +53,9 @@
 		AD801636272870BC00A6AA82 /* UIImage+circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+circle.swift"; sourceTree = "<group>"; };
 		AD8016382729218300A6AA82 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		AD80163A2729253A00A6AA82 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
+		AD80163D27293E7600A6AA82 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		AD80163F27293EB100A6AA82 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		AD8016412729408000A6AA82 /* UIImage+names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+names.swift"; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -113,6 +119,8 @@
 				AD7150BA2725D47F0085E1C6 /* AppDelegate.swift */,
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
 				ADBC205E2727203D003FEE82 /* ResetPasswordViewController.swift */,
+				AD80163F27293EB100A6AA82 /* UsersViewController.swift */,
+				AD80163D27293E7600A6AA82 /* UserCell.swift */,
 				AD80163C27293BBC00A6AA82 /* SettingsScreen */,
 				AD7150BE2725D47F0085E1C6 /* LoginViewController.swift */,
 				ADBC20532726CACD003FEE82 /* GlobalConstants.swift */,
@@ -122,6 +130,7 @@
 				ADBC20522726C817003FEE82 /* Models */,
 				AD7150C02725D47F0085E1C6 /* Main.storyboard */,
 				AD80162E2728198200A6AA82 /* UIColor+names.swift */,
+				AD8016412729408000A6AA82 /* UIImage+names.swift */,
 				AD801636272870BC00A6AA82 /* UIImage+circle.swift */,
 				AD7150C32725D4820085E1C6 /* Assets.xcassets */,
 				AD7150C52725D4820085E1C6 /* LaunchScreen.storyboard */,
@@ -290,9 +299,12 @@
 				ADBC205B2726D8CE003FEE82 /* LocalStorage.swift in Sources */,
 				AD8016392729218300A6AA82 /* Status.swift in Sources */,
 				AD801631272830B100A6AA82 /* EditProfileViewController.swift in Sources */,
+				AD80163E27293E7600A6AA82 /* UserCell.swift in Sources */,
 				AD7150BD2725D47F0085E1C6 /* SceneDelegate.swift in Sources */,
 				ADBC20592726D3F5003FEE82 /* FUserListener.swift in Sources */,
 				AD80162F2728198200A6AA82 /* UIColor+names.swift in Sources */,
+				AD8016422729408000A6AA82 /* UIImage+names.swift in Sources */,
+				AD80164027293EB100A6AA82 /* UsersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

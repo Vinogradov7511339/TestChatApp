@@ -42,3 +42,37 @@ struct User: Codable, Equatable {
         return lhs.id == rhs.id
     }
 }
+
+// MARK: - Mock data
+extension User {
+    static func mockUsers() {
+        let names = ["Alison Stamp", "Inayah Duggan", "Alfie Thornton", "Rachelle Neale", "Anya Gates", "Juanita Bate",
+                     "Alison Stamp", "Inayah Duggan", "Alfie Thornton", "Rachelle Neale", "Anya Gates", "Juanita Bate",
+                     "Alison Stamp", "Inayah Duggan", "Alfie Thornton", "Rachelle Neale", "Anya Gates", "Juanita Bate"]
+        for (index, status) in Status.allCases.enumerated() {
+            if index > 4 { return }
+            let id = UUID().uuidString
+            let fileDirectory = "Avatars/_" + id + ".jpg"
+            let image = UIImage(named: "user\(index)")!
+            FileStorage.uploadImage(image, directory: fileDirectory) { result in
+                switch result {
+                case .success(let link):
+                    let user = User(id: id,
+                                    username: names[index],
+                                    email: "user\(index)@gmail.com",
+                                    pushId: nil,
+                                    avatarLink: link,
+                                    status: status.rawValue)
+                    FUserListener.shared.saveUserToFirestore(user) { error in
+                        if let error = error {
+                            assertionFailure(error.localizedDescription)
+                        }
+                    }
+                case .failure(let error):
+                    break
+                }
+            }
+
+        }
+    }
+}
