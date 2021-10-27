@@ -44,7 +44,7 @@ class EditProfileViewController: UITableViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let image):
-                    self.avatarImageView.image = image
+                    self.avatarImageView.image = image.circleMasked
                 case .failure(let error):
                     ProgressHUD.showError(error.localizedDescription)
                 }
@@ -114,7 +114,7 @@ extension EditProfileViewController: GalleryControllerDelegate {
                 return
             }
             self.uploadPhoto(uiImage)
-            self.avatarImageView.image = uiImage
+            self.avatarImageView.image = uiImage.circleMasked
         }
     }
 

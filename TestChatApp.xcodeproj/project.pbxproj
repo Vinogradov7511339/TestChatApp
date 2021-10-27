@@ -19,6 +19,7 @@
 		AD801631272830B100A6AA82 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801630272830B100A6AA82 /* EditProfileViewController.swift */; };
 		AD801633272849E400A6AA82 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801632272849E400A6AA82 /* FileStorage.swift */; };
 		AD801635272863EC00A6AA82 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801634272863EC00A6AA82 /* GlobalFunctions.swift */; };
+		AD801637272870BC00A6AA82 /* UIImage+circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801636272870BC00A6AA82 /* UIImage+circle.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -44,6 +45,7 @@
 		AD801630272830B100A6AA82 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		AD801632272849E400A6AA82 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		AD801634272863EC00A6AA82 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		AD801636272870BC00A6AA82 /* UIImage+circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+circle.swift"; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				ADBC20522726C817003FEE82 /* Models */,
 				AD7150C02725D47F0085E1C6 /* Main.storyboard */,
 				AD80162E2728198200A6AA82 /* UIColor+names.swift */,
+				AD801636272870BC00A6AA82 /* UIImage+circle.swift */,
 				AD7150C32725D4820085E1C6 /* Assets.xcassets */,
 				AD7150C52725D4820085E1C6 /* LaunchScreen.storyboard */,
 				AD7150C82725D4820085E1C6 /* Info.plist */,
@@ -263,6 +266,7 @@
 				ADBC20562726CF1D003FEE82 /* FCollectionReference.swift in Sources */,
 				AD801635272863EC00A6AA82 /* GlobalFunctions.swift in Sources */,
 				ADBC20512726C7FB003FEE82 /* User.swift in Sources */,
+				AD801637272870BC00A6AA82 /* UIImage+circle.swift in Sources */,
 				AD80162D272813BD00A6AA82 /* SettingsViewController.swift in Sources */,
 				AD7150BF2725D47F0085E1C6 /* LoginViewController.swift in Sources */,
 				ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */,

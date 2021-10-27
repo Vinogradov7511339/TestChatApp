@@ -41,7 +41,7 @@ class SettingsViewController: UITableViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let image):
-                    self.avatarImageView.image = image
+                    self.avatarImageView.image = image.circleMasked
                 case .failure(let error):
                     ProgressHUD.showError(error.localizedDescription)
                 }
