@@ -20,9 +20,18 @@ class UsersViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
         tableView.tableFooterView = UIView()
         configureNavBar()
         downloadUsers()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationItem.largeTitleDisplayMode = .always // TODO: - remove maybe
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 
     func downloadUsers() {
@@ -32,8 +41,10 @@ class UsersViewController: UITableViewController {
                 case .success(let users):
                     self.users = users
                     self.tableView.reloadData()
+                    self.refreshControl?.endRefreshing()
                 case .failure(let error):
                     ProgressHUD.showError(error.localizedDescription)
+                    self.refreshControl?.endRefreshing()
                 }
             }
         }
@@ -53,6 +64,13 @@ class UsersViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard refreshControl?.isRefreshing ?? false else {
+            return
+        }
+        downloadUsers()
+    }
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,6 +86,20 @@ class UsersViewController: UITableViewController {
         let user  = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         cell.configure(with: user)
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .tableviewBG
+        return view
+    }
+
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5.0
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
