@@ -64,6 +64,17 @@ class UsersViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    func show(user: User) {
+
+        let controller = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "profileController")
+        guard let controller = controller as? ProfileViewController else {
+            return
+        }
+        controller.user = user
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         guard refreshControl?.isRefreshing ?? false else {
             return
@@ -100,6 +111,8 @@ class UsersViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let user = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
+        show(user: user)
     }
 }
 
