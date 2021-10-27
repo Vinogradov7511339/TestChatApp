@@ -11,6 +11,7 @@ import Firebase
 struct NotVerifiedEmailError: Error {}
 struct NoUserDocumentError: Error {}
 struct EmptyUserError: Error {}
+struct EmptyResponseError: Error {}
 
 class FUserListener {
 
@@ -122,6 +123,45 @@ class FUserListener {
             completion(nil)
         } catch {
             completion(error)
+        }
+    }
+
+    // MARK: - download users
+    func downloadUsers(completion: @escaping (Result<[User], Error>) -> Void) {
+        FirebaseReference(.user).limit(to: 100).getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let snapshot = snapshot else {
+                completion(.failure(EmptyResponseError()))
+                return
+            }
+            let users = snapshot.documents.compactMap {
+                try? $0.data(as: User.self)
+            }.filter {
+                $0.id != User.currentUser?.id
+            }
+            completion(.success(users))
+        }
+    }
+
+    func downloadUsers(with ids: [String], completion: @escaping (Result<[User], Error>) -> Void) {
+        FirebaseReference(.user).limit(to: 100).getDocuments { snapshot, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let snapshot = snapshot else {
+                completion(.failure(EmptyResponseError()))
+                return
+            }
+            let users = snapshot.documents.compactMap {
+                try? $0.data(as: User.self)
+            }.filter {
+                ids.contains($0.id)
+            }
+            completion(.success(users))
         }
     }
 }

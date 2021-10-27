@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class UsersViewController: UITableViewController {
 
@@ -19,6 +20,37 @@ class UsersViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+        configureNavBar()
+        downloadUsers()
+    }
+
+    func downloadUsers() {
+        FUserListener.shared.downloadUsers { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let users):
+                    self.users = users
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    ProgressHUD.showError(error.localizedDescription)
+                }
+            }
+        }
+    }
+
+    func configureNavBar() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = true
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = Const.searchUser
+        searchController.searchResultsUpdater = self
+        definesPresentationContext = true
+    }
+
+    func filterContent(for text: String) {
+        filteredUsers = users.filter { $0.username.lowercased().contains(text.lowercased()) }
+        tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -36,5 +68,20 @@ class UsersViewController: UITableViewController {
         let user  = searchController.isActive ? filteredUsers[indexPath.row] : users[indexPath.row]
         cell.configure(with: user)
         return cell
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension UsersViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        if let searchText = searchController.searchBar.text {
+            filterContent(for: searchText)
+        }
+    }
+}
+
+extension UsersViewController {
+    enum Const {
+        static let searchUser = NSLocalizedString("", value: "Search user", comment: "")
     }
 }
