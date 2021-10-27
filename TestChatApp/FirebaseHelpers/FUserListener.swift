@@ -94,7 +94,7 @@ class FUserListener {
                             email: email,
                             pushId: nil,
                             avatarLink: nil,
-                            status: nil)
+                            status: "Hi everyone, I'm using TestChatApp!")
 
             // save user localy
             LocalStorage.save(user: user) { error in

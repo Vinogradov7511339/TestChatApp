@@ -11,6 +11,8 @@ import Firebase
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var wasLaunched: Bool = true
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         return true
@@ -23,5 +25,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {}
+
+    // MARK: - First launch
+
+    private func firstLaunchCheck() {
+        wasLaunched = UserDefaults.standard.bool(forKey: kFirstLaunch)
+        guard !wasLaunched else { return }
+        UserDefaults.standard.set(true, forKey: kFirstLaunch)
+
+        let statuses = Status.allCases.map { $0.rawValue }
+        UserDefaults.standard.set(statuses, forKey: kUserStatus)
+    }
 }
 

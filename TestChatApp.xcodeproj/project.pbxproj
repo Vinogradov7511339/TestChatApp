@@ -20,6 +20,8 @@
 		AD801633272849E400A6AA82 /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801632272849E400A6AA82 /* FileStorage.swift */; };
 		AD801635272863EC00A6AA82 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801634272863EC00A6AA82 /* GlobalFunctions.swift */; };
 		AD801637272870BC00A6AA82 /* UIImage+circle.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801636272870BC00A6AA82 /* UIImage+circle.swift */; };
+		AD8016392729218300A6AA82 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8016382729218300A6AA82 /* Status.swift */; };
+		AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80163A2729253A00A6AA82 /* StatusViewController.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -46,6 +48,8 @@
 		AD801632272849E400A6AA82 /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		AD801634272863EC00A6AA82 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		AD801636272870BC00A6AA82 /* UIImage+circle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+circle.swift"; sourceTree = "<group>"; };
+		AD8016382729218300A6AA82 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		AD80163A2729253A00A6AA82 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 				AD7150BA2725D47F0085E1C6 /* AppDelegate.swift */,
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
 				ADBC205E2727203D003FEE82 /* ResetPasswordViewController.swift */,
+				AD80163A2729253A00A6AA82 /* StatusViewController.swift */,
 				AD801630272830B100A6AA82 /* EditProfileViewController.swift */,
 				AD80162C272813BD00A6AA82 /* SettingsViewController.swift */,
 				AD7150BE2725D47F0085E1C6 /* LoginViewController.swift */,
@@ -132,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				ADBC20502726C7FB003FEE82 /* User.swift */,
+				AD8016382729218300A6AA82 /* Status.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -271,8 +277,10 @@
 				AD7150BF2725D47F0085E1C6 /* LoginViewController.swift in Sources */,
 				ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */,
 				AD801633272849E400A6AA82 /* FileStorage.swift in Sources */,
+				AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */,
 				AD7150BB2725D47F0085E1C6 /* AppDelegate.swift in Sources */,
 				ADBC205B2726D8CE003FEE82 /* LocalStorage.swift in Sources */,
+				AD8016392729218300A6AA82 /* Status.swift in Sources */,
 				AD801631272830B100A6AA82 /* EditProfileViewController.swift in Sources */,
 				AD7150BD2725D47F0085E1C6 /* SceneDelegate.swift in Sources */,
 				ADBC20592726D3F5003FEE82 /* FUserListener.swift in Sources */,
