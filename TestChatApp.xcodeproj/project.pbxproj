@@ -113,9 +113,7 @@
 				AD7150BA2725D47F0085E1C6 /* AppDelegate.swift */,
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
 				ADBC205E2727203D003FEE82 /* ResetPasswordViewController.swift */,
-				AD80163A2729253A00A6AA82 /* StatusViewController.swift */,
-				AD801630272830B100A6AA82 /* EditProfileViewController.swift */,
-				AD80162C272813BD00A6AA82 /* SettingsViewController.swift */,
+				AD80163C27293BBC00A6AA82 /* SettingsScreen */,
 				AD7150BE2725D47F0085E1C6 /* LoginViewController.swift */,
 				ADBC20532726CACD003FEE82 /* GlobalConstants.swift */,
 				AD801634272863EC00A6AA82 /* GlobalFunctions.swift */,
@@ -131,6 +129,16 @@
 				ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */,
 			);
 			path = TestChatApp;
+			sourceTree = "<group>";
+		};
+		AD80163C27293BBC00A6AA82 /* SettingsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AD80163A2729253A00A6AA82 /* StatusViewController.swift */,
+				AD801630272830B100A6AA82 /* EditProfileViewController.swift */,
+				AD80162C272813BD00A6AA82 /* SettingsViewController.swift */,
+			);
+			path = SettingsScreen;
 			sourceTree = "<group>";
 		};
 		ADBC20522726C817003FEE82 /* Models */ = {
