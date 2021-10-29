@@ -14,7 +14,7 @@ class FRecentListener {
 
     private init() {}
 
-    func add(recent: RecentChat) {
+    func save(recent: RecentChat) {
         do {
             try FirebaseReference(.recent).document(recent.id).setData(from: recent)
         } catch {
@@ -36,6 +36,22 @@ class FRecentListener {
                     .sorted { $0.updatedAt! > $1.updatedAt! } ?? []
                 completion(.success(recents))
         }
+    }
+
+    func resetUnreadCounter(for chatRoomId: String) {
+        FirebaseReference(.recent)
+            .whereField(kChatRoomId, isEqualTo: chatRoomId)
+            .whereField(kSenderId, isEqualTo: User.currentId!).getDocuments { snapshot, error in
+                snapshot?.documents
+                    .compactMap { try? $0.data(as: RecentChat.self) }
+                    .forEach { self.nulifyUnreadCounter($0) }
+            }
+    }
+
+    func nulifyUnreadCounter(_ chat: RecentChat) {
+        var updatedRecent = chat
+        updatedRecent.unreadCounter = 0
+        save(recent: updatedRecent)
     }
 
     func delete(recent: RecentChat) {

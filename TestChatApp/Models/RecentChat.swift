@@ -18,6 +18,6 @@ struct RecentChat: Codable {
     @ServerTimestamp var updatedAt = Date()
     let memberIds: [String]
     let lastMessage: String
-    let unreadCounter: Int
+    var unreadCounter: Int
     let avatarLink: String?
 }

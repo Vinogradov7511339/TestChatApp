@@ -63,6 +63,13 @@ class RecentChatsViewController: UITableViewController {
         tableView.reloadData()
     }
 
+    func open(recent: RecentChat) {
+        restartChat(chatRoomId: recent.chatRoomId, memberIds: recent.memberIds)
+        let controller = ChatViewController(recent: recent)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
+    }
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,6 +88,9 @@ class RecentChatsViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let chatItem = searchController.isActive ? filteredChatItems[indexPath.row] : chatItems[indexPath.row]
+        FRecentListener.shared.nulifyUnreadCounter(chatItem)
+        open(recent: chatItem)
     }
 
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

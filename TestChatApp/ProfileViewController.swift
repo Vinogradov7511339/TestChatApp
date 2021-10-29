@@ -68,5 +68,8 @@ class ProfileViewController: UITableViewController {
         guard let currentUser = User.currentUser else { return }
         guard let user = user else { return }
         let chatId = startChat(user1: currentUser, user2: user, currentUser: currentUser)
+        let controller = ChatViewController(chatId: chatId, recipientId: user.id, recipientName: user.username)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

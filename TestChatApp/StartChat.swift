@@ -15,6 +15,17 @@ func startChat(user1: User, user2: User, currentUser: User) -> String {
     return chatRoomId
 }
 
+func restartChat(chatRoomId: String, memberIds: [String]) {
+    FUserListener.shared.downloadUsers(with: memberIds) { result in
+        switch result {
+        case .failure(let error):
+            assert(false, error.localizedDescription)
+        case .success(let users):
+            createRecentItems(chatRoomId: chatRoomId, users: users, currentUser: User.currentUser!)
+        }
+    }
+}
+
 func createRecentItems(chatRoomId: String, users: [User], currentUser: User) {
     FirebaseReference(.recent).whereField(kChatRoomId, isEqualTo: chatRoomId).getDocuments { snapshot, error in
         guard let snapshot = snapshot else { return }
@@ -40,10 +51,8 @@ func createRecentItems(chatRoomId: String, users: [User], currentUser: User) {
                 lastMessage: "",
                 unreadCounter: 0,
                 avatarLink: receiver.avatarLink)
-            FRecentListener.shared.add(recent: recentChat)
+            FRecentListener.shared.save(recent: recentChat)
         }
-
-
     }
 }
 
