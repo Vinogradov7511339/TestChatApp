@@ -65,5 +65,8 @@ class ProfileViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        guard let currentUser = User.currentUser else { return }
+        guard let user = user else { return }
+        let chatId = startChat(user1: currentUser, user2: user, currentUser: currentUser)
     }
 }
