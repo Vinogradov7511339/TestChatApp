@@ -225,7 +225,7 @@
         <!--Users-->
         <scene sceneID="u2c-aw-nBl">
             <objects>
-                <tableViewController id="GA2-Ee-bik" customClass="UsersViewController" customModule="TestChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="usersScreen" id="GA2-Ee-bik" customClass="UsersViewController" customModule="TestChatApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="TCI-gm-CeL">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -949,7 +949,13 @@
                             <outlet property="delegate" destination="0No-dJ-9FB" id="3jI-3g-vls"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Chats" id="rhB-2S-qL1"/>
+                    <navigationItem key="navigationItem" title="Chats" id="rhB-2S-qL1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="HXT-GM-qAq">
+                            <connections>
+                                <action selector="createChatButtonTouchUpInside:" destination="0No-dJ-9FB" id="4D3-Zh-OgK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P4O-Mk-84o" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

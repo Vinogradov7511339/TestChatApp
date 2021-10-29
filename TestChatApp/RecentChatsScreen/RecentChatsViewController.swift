@@ -25,6 +25,15 @@ class RecentChatsViewController: UITableViewController {
         dowloadChats()
     }
 
+    @IBAction func createChatButtonTouchUpInside(_ sender: UIBarButtonItem) {
+        let controller = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "usersScreen")
+        guard let controller = controller as? UsersViewController else {
+            return
+        }
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func configureNavBar() {
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = true
@@ -68,6 +77,22 @@ class RecentChatsViewController: UITableViewController {
         let chatItem = searchController.isActive ? filteredChatItems[indexPath.row] : chatItems[indexPath.row]
         cell.configure(recent: chatItem)
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let chatItem = searchController.isActive ? filteredChatItems[indexPath.row] : chatItems[indexPath.row]
+        FRecentListener.shared.delete(recent: chatItem)
+        let _ = searchController.isActive ? filteredChatItems.remove(at: indexPath.row) : chatItems.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .automatic)
     }
 }
 

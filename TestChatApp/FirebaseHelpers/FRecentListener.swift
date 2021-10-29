@@ -37,4 +37,8 @@ class FRecentListener {
                 completion(.success(recents))
         }
     }
+
+    func delete(recent: RecentChat) {
+        FirebaseReference(.recent).document(recent.id).delete()
+    }
 }
