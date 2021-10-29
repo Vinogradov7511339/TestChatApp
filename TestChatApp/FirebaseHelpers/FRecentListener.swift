@@ -20,6 +20,21 @@ class FRecentListener {
         } catch {
             assert(false, error.localizedDescription)
         }
+    }
 
+    func downloadChats(completion: @escaping (Result<[RecentChat], Error>) -> Void) {
+        FirebaseReference(.recent)
+            .whereField(kSenderId, isEqualTo: User.currentId ?? "")
+            .addSnapshotListener { snapshot, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                let recents = snapshot?.documents
+                    .compactMap { try? $0.data(as: RecentChat.self) }
+                    .filter { !$0.lastMessage.isEmpty }
+                    .sorted { $0.updatedAt! > $1.updatedAt! } ?? []
+                completion(.success(recents))
+        }
     }
 }

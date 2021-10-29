@@ -31,6 +31,7 @@
 		AD80164C27298A1100A6AA82 /* Date+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80164B27298A1100A6AA82 /* Date+extensions.swift */; };
 		AD80164E27298BFF00A6AA82 /* StartChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80164D27298BFF00A6AA82 /* StartChat.swift */; };
 		AD8016502729933200A6AA82 /* FRecentListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80164F2729933200A6AA82 /* FRecentListener.swift */; };
+		AD801652272BE4E900A6AA82 /* RecentChatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801651272BE4E900A6AA82 /* RecentChatsViewController.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -68,6 +69,7 @@
 		AD80164B27298A1100A6AA82 /* Date+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+extensions.swift"; sourceTree = "<group>"; };
 		AD80164D27298BFF00A6AA82 /* StartChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartChat.swift; sourceTree = "<group>"; };
 		AD80164F2729933200A6AA82 /* FRecentListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FRecentListener.swift; sourceTree = "<group>"; };
+		AD801651272BE4E900A6AA82 /* RecentChatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentChatsViewController.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -130,8 +132,8 @@
 			children = (
 				AD7150BA2725D47F0085E1C6 /* AppDelegate.swift */,
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
-				AD80164727297BE500A6AA82 /* RecentCell.swift */,
 				AD8016432729618900A6AA82 /* ProfileViewController.swift */,
+				AD801653272BE54800A6AA82 /* RecentChatsScreen */,
 				AD80164A27297C0400A6AA82 /* UsersListScreen */,
 				AD80164927297BF100A6AA82 /* LoginScreen */,
 				AD80163C27293BBC00A6AA82 /* SettingsScreen */,
@@ -180,6 +182,15 @@
 				AD80163D27293E7600A6AA82 /* UserCell.swift */,
 			);
 			path = UsersListScreen;
+			sourceTree = "<group>";
+		};
+		AD801653272BE54800A6AA82 /* RecentChatsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AD801651272BE4E900A6AA82 /* RecentChatsViewController.swift */,
+				AD80164727297BE500A6AA82 /* RecentCell.swift */,
+			);
+			path = RecentChatsScreen;
 			sourceTree = "<group>";
 		};
 		ADBC20522726C817003FEE82 /* Models */ = {
@@ -344,6 +355,7 @@
 				AD80162F2728198200A6AA82 /* UIColor+names.swift in Sources */,
 				AD8016442729618A00A6AA82 /* ProfileViewController.swift in Sources */,
 				AD8016422729408000A6AA82 /* UIImage+names.swift in Sources */,
+				AD801652272BE4E900A6AA82 /* RecentChatsViewController.swift in Sources */,
 				AD80164027293EB100A6AA82 /* UsersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
