@@ -10,7 +10,8 @@ import InputBarAccessoryView
 
 extension ChatViewController: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, textViewTextDidChangeTo text: String) {
-        guard !text.isEmpty else { return }
+        let hideMicButton = !text.isEmpty
+        updateMickButtonState(hideMicButton)
     }
 
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {

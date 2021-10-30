@@ -9,6 +9,7 @@ import UIKit
 
 extension UIImage {
     static let avatar: UIImage? = UIImage(named: "avatar")
+    static let back: UIImage? = UIImage(systemName: "chevron.left") 
 
     static let plus = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30.0))
     static let mic = UIImage(systemName: "mic.fill", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30.0))

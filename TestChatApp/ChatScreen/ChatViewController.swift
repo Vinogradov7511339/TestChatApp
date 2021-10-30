@@ -13,6 +13,32 @@ import RealmSwift
 
 class ChatViewController: MessagesViewController {
 
+    // MARK: - Views
+
+    let leftBarButtonView: UIView = {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 200.0, height: 50.0)
+        let view = UIView(frame: rect)
+        return view
+    }()
+
+    let titleLabel: UILabel = {
+        let rect = CGRect(x: 5.0, y: 0.0, width: 180.0, height: 25.0)
+        let label = UILabel(frame: rect)
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 16.0, weight: .medium)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+
+    let subtitleLabel: UILabel = {
+        let rect = CGRect(x: 5.0, y: 25.0, width: 180.0, height: 20.0)
+        let label = UILabel(frame: rect)
+        label.textAlignment = .left
+        label.font = .systemFont(ofSize: 13.0, weight: .medium)
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+
     // MARK: - Private variables
 
     private let chatId: String
@@ -53,9 +79,29 @@ class ChatViewController: MessagesViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureBackBarButtonItem()
+        configureNavBar()
         configureCollectonView()
         configureInputBar()
         loadMessages()
+    }
+
+    @objc func goBack() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    func configureBackBarButtonItem() {
+        let button = UIBarButtonItem(image: .back, style: .plain, target: self, action: #selector(goBack))
+        navigationItem.leftBarButtonItems = [button]
+    }
+
+    func configureNavBar() {
+        leftBarButtonView.addSubview(titleLabel)
+        leftBarButtonView.addSubview(subtitleLabel)
+        let view = UIBarButtonItem(customView: leftBarButtonView)
+        navigationItem.leftBarButtonItems?.append(view)
+
+        titleLabel.text = recipientName
     }
 
     func configureCollectonView() {
@@ -82,11 +128,25 @@ class ChatViewController: MessagesViewController {
 
         messageInputBar.delegate = self
         messageInputBar.setStackViewItems([addAttachmentButton], forStack: .left, animated: false)
-//        messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
+        updateMickButtonState(false)
         messageInputBar.setLeftStackViewWidthConstant(to: 36.0, animated: false)
         messageInputBar.inputTextView.isImagePasteEnabled = false
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
+    }
+
+    func updateSubtitleState(_ show: Bool) {
+        subtitleLabel.text = show ? Const.typing : Const.emptyText
+    }
+
+    func updateMickButtonState(_ isHidden: Bool) {
+        if isHidden {
+            messageInputBar.setStackViewItems([messageInputBar.sendButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 60.0, animated: false)
+        } else {
+            messageInputBar.setStackViewItems([micButton], forStack: .right, animated: false)
+            messageInputBar.setRightStackViewWidthConstant(to: 30.0, animated: false)
+        }
     }
 
     func messageSend(text: String?,
@@ -137,5 +197,12 @@ class ChatViewController: MessagesViewController {
         if let mkMessage = incoming.createMessage(from: message) {
             messages.append(mkMessage)
         }
+    }
+}
+
+extension ChatViewController {
+    enum Const {
+        static let typing = NSLocalizedString("", value: "Typing ...", comment: "")
+        static let emptyText = NSLocalizedString("", value: "", comment: "")
     }
 }
