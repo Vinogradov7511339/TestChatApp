@@ -937,7 +937,7 @@
                                 <connections>
                                     <outlet property="avatarImageView" destination="y8a-xm-1ip" id="HgU-7Y-Ocz"/>
                                     <outlet property="badgeCounterLabel" destination="J8Q-q1-d2P" id="cuq-oJ-igE"/>
-                                    <outlet property="badgeView" destination="J8Q-q1-d2P" id="zL9-8s-yzG"/>
+                                    <outlet property="badgeView" destination="JXb-De-h22" id="5Mb-L0-e7N"/>
                                     <outlet property="messageLabel" destination="qlz-lk-VIv" id="ZkL-Da-AXW"/>
                                     <outlet property="updatedAtLabel" destination="NfB-FV-nrD" id="RUw-P3-Z1S"/>
                                     <outlet property="usernameLabel" destination="G2F-TP-bbJ" id="1zW-qz-knK"/>

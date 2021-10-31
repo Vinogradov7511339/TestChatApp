@@ -15,7 +15,7 @@ class RecentCell: UITableViewCell {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var updatedAtLabel: UILabel!
-    @IBOutlet weak var badgeView: UILabel!
+    @IBOutlet weak var badgeView: UIView!
     @IBOutlet weak var badgeCounterLabel: UILabel!
 
     override func awakeFromNib() {

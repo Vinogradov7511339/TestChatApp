@@ -16,6 +16,7 @@ class OutgoingMessage {
         if let text = text {
             sendTextMessage(message, text: text, memberIds: memberIds)
         }
+        FRecentListener.shared.updateRecent(chatroomId: chatId, lastMessage: message.message)
     }
 }
 
