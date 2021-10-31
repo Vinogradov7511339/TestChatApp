@@ -57,6 +57,10 @@ class ChatViewController: MessagesViewController {
     let realm = try! Realm()
     var notificationToken: NotificationToken?
 
+    var displayingMessagesCount = 0
+    var maxMessagesNumber = 0
+    var minMessagesNumber = 0
+
     // MARK: - Lifecycle
 
     init(recent: RecentChat) {
@@ -103,6 +107,7 @@ class ChatViewController: MessagesViewController {
         navigationItem.leftBarButtonItems?.append(view)
 
         titleLabel.text = recipientName
+        navigationItem.largeTitleDisplayMode = .never
     }
 
     func configureCollectonView() {
@@ -138,6 +143,16 @@ class ChatViewController: MessagesViewController {
 
     func updateSubtitleState(_ show: Bool) {
         subtitleLabel.text = show ? Const.typing : Const.emptyText
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if refreshControl.isRefreshing {
+            if displayingMessagesCount < localMessages.count {
+                loadOldMessages(maxNumber: maxMessagesNumber, minNumber: minMessagesNumber)
+                messagesCollectionView.reloadDataAndKeepOffset()
+            }
+            refreshControl.endRefreshing()
+        }
     }
 
     func updateMickButtonState(_ isHidden: Bool) {
@@ -208,13 +223,35 @@ class ChatViewController: MessagesViewController {
     }
 
     func insertMessages() {
-        localMessages.forEach { insert(message: $0) }
+        maxMessagesNumber = localMessages.count - displayingMessagesCount
+        minMessagesNumber = maxMessagesNumber - kNumberOfMessages
+        minMessagesNumber = max(0, minMessagesNumber)
+        (minMessagesNumber..<maxMessagesNumber)
+            .forEach { insert(message: localMessages[$0]) }
     }
 
     func insert(message: LocalMessage) {
+        displayingMessagesCount += 1
         let incoming = IncomingMessage(self)
         if let mkMessage = incoming.createMessage(from: message) {
             messages.append(mkMessage)
+        }
+    }
+
+    // MARK: - rename to "load next batch"
+    func loadOldMessages(maxNumber: Int, minNumber: Int) {
+        maxMessagesNumber = minNumber
+        minMessagesNumber = maxMessagesNumber - kNumberOfMessages
+        minMessagesNumber = max(0, minMessagesNumber)
+        (minMessagesNumber..<maxMessagesNumber).reversed()
+            .forEach { insertOlder(message: localMessages[$0]) }
+    }
+
+    func insertOlder(message: LocalMessage) {
+        displayingMessagesCount += 1
+        let incoming = IncomingMessage(self)
+        if let mkMessage = incoming.createMessage(from: message) {
+            messages.insert(mkMessage, at: 0)
         }
     }
 }

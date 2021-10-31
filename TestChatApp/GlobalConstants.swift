@@ -21,3 +21,5 @@ public let kVideoMessageType = "video"
 public let kAudioMessageType = "audio"
 public let kLocationMessageType = "location"
 public let kCreatedDate = "createdAt"
+
+public let kNumberOfMessages = 12
