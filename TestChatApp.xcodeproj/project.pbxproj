@@ -45,6 +45,7 @@
 		AD80166A272C4D2400A6AA82 /* OutgoingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD801669272C4D2400A6AA82 /* OutgoingMessage.swift */; };
 		AD80166C272C594700A6AA82 /* FMessageListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166B272C594700A6AA82 /* FMessageListener.swift */; };
 		AD80166E272D360E00A6AA82 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166D272D360E00A6AA82 /* IncomingMessage.swift */; };
+		AD801670272EC5F500A6AA82 /* FTypingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166F272EC5F500A6AA82 /* FTypingListener.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -96,6 +97,7 @@
 		AD801669272C4D2400A6AA82 /* OutgoingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutgoingMessage.swift; sourceTree = "<group>"; };
 		AD80166B272C594700A6AA82 /* FMessageListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMessageListener.swift; sourceTree = "<group>"; };
 		AD80166D272D360E00A6AA82 /* IncomingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
+		AD80166F272EC5F500A6AA82 /* FTypingListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTypingListener.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				ADBC20582726D3F5003FEE82 /* FUserListener.swift */,
 				AD80164F2729933200A6AA82 /* FRecentListener.swift */,
 				AD80166B272C594700A6AA82 /* FMessageListener.swift */,
+				AD80166F272EC5F500A6AA82 /* FTypingListener.swift */,
 			);
 			path = FirebaseHelpers;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 				ADBC205B2726D8CE003FEE82 /* LocalStorage.swift in Sources */,
 				AD801664272C361E00A6AA82 /* MKMessage.swift in Sources */,
 				AD8016392729218300A6AA82 /* Status.swift in Sources */,
+				AD801670272EC5F500A6AA82 /* FTypingListener.swift in Sources */,
 				AD801631272830B100A6AA82 /* EditProfileViewController.swift in Sources */,
 				AD80164627296B8400A6AA82 /* RecentChat.swift in Sources */,
 				AD80163E27293E7600A6AA82 /* UserCell.swift in Sources */,

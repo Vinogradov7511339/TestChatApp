@@ -12,6 +12,7 @@ enum FCollectionReference: String {
     case user = "User"
     case recent = "Recent"
     case messages = "Messages"
+    case typing = "Typing"
 }
 
 func FirebaseReference(_ collectionReference: FCollectionReference) -> CollectionReference {

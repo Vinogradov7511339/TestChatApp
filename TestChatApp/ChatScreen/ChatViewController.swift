@@ -61,6 +61,8 @@ class ChatViewController: MessagesViewController {
     var maxMessagesNumber = 0
     var minMessagesNumber = 0
 
+    var typingCounter = 0
+
     // MARK: - Lifecycle
 
     init(recent: RecentChat) {
@@ -89,9 +91,12 @@ class ChatViewController: MessagesViewController {
         configureInputBar()
         loadMessages()
         listenForNewChats()
+        createTypingObserver()
     }
 
     @objc func goBack() {
+        FRecentListener.shared.resetUnreadCounter(for: chatId)
+        removeListeners()
         navigationController?.popViewController(animated: true)
     }
 
@@ -252,6 +257,37 @@ class ChatViewController: MessagesViewController {
         let incoming = IncomingMessage(self)
         if let mkMessage = incoming.createMessage(from: message) {
             messages.insert(mkMessage, at: 0)
+        }
+    }
+
+    func removeListeners() {
+        FTypingListener.shared.removeTypingObserver()
+        FMessageListener.shared.removeObservers()
+    }
+}
+
+// MARK: - Typing indicator
+extension ChatViewController {
+    func typingIndicatorUpdate() {
+        typingCounter += 1
+        FTypingListener.saveTypingCounter(isTyping: true, chatroomId: chatId)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.typingCounterStop()
+        }
+    }
+
+    func typingCounterStop() {
+        typingCounter -= 1
+        if typingCounter == 0 {
+            FTypingListener.saveTypingCounter(isTyping: false, chatroomId: chatId)
+        }
+    }
+
+    func createTypingObserver() {
+        FTypingListener.shared.createTypingObserver(for: chatId) { isTyping in
+            DispatchQueue.main.async {
+                self.updateSubtitleState(isTyping)
+            }
         }
     }
 }

@@ -56,4 +56,10 @@ class FMessageListener {
                 .forEach { RealmManager.shared.save($0) }
         })
     }
+
+
+    func removeObservers() {
+        newChatListener.remove()
+//        updatedChatListener.remove()
+    }
 }
