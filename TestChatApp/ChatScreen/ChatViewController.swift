@@ -84,6 +84,7 @@ class ChatViewController: MessagesViewController {
         configureCollectonView()
         configureInputBar()
         loadMessages()
+        listenForNewChats()
     }
 
     @objc func goBack() {
@@ -192,7 +193,15 @@ class ChatViewController: MessagesViewController {
         })
     }
 
-    func listenForNewChats() {}
+    func listenForNewChats() {
+        let date = lastMessageDate()
+        FMessageListener.shared.listenForNewChats(User.currentId!, collectionId: chatId, lastMessageDate: date)
+    }
+
+    func lastMessageDate() -> Date {
+        let lastDate = localMessages.last?.createdAt ?? Date()
+        return Calendar.current.date(byAdding: .second, value: 1, to: lastDate) ?? lastMessageDate()
+    }
 
     func checkForOldChats() {
         FMessageListener.shared.checkForOldChats(User.currentId!, collectionId: chatId)
