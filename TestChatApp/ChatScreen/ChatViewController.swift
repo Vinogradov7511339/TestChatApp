@@ -172,6 +172,10 @@ class ChatViewController: MessagesViewController {
             .filter(predicate)
             .sorted(byKeyPath: kCreatedDate, ascending: true)
 
+        if localMessages.isEmpty {
+            checkForOldChats()
+        }
+
         notificationToken = localMessages.observe({ (changes: RealmCollectionChange) in
             switch changes {
             case .initial(_):
@@ -186,6 +190,12 @@ class ChatViewController: MessagesViewController {
                 assert(false, error.localizedDescription)
             }
         })
+    }
+
+    func listenForNewChats() {}
+
+    func checkForOldChats() {
+        FMessageListener.shared.checkForOldChats(User.currentId!, collectionId: chatId)
     }
 
     func insertMessages() {

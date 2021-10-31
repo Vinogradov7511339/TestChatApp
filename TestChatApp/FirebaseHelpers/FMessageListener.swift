@@ -26,4 +26,18 @@ class FMessageListener {
             assert(false, error.localizedDescription)
         }
     }
+
+    // TODO: - change local params names
+    func checkForOldChats(_ documentId: String, collectionId: String) {
+        FirebaseReference(.messages).document(documentId).collection(collectionId).getDocuments { snapshot, error in
+            if let error = error {
+                assert(false, error.localizedDescription)
+                return
+            }
+            snapshot?.documents
+                .compactMap { try? $0.data(as: LocalMessage.self) }
+                .sorted { $0.createdAt < $1.createdAt }
+                .forEach { RealmManager.shared.save($0) }
+        }
+    }
 }
