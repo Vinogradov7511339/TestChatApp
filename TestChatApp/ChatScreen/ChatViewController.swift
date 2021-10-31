@@ -92,6 +92,7 @@ class ChatViewController: MessagesViewController {
         loadMessages()
         listenForNewChats()
         createTypingObserver()
+        listenForReadMessageStatusChange()
     }
 
     @objc func goBack() {
@@ -218,6 +219,26 @@ class ChatViewController: MessagesViewController {
         FMessageListener.shared.listenForNewChats(User.currentId!, collectionId: chatId, lastMessageDate: date)
     }
 
+    func listenForReadMessageStatusChange() {
+        FMessageListener.shared.listenForReadStatusChange(User.currentId!, collectionId: chatId) { updatedMessage in
+            guard updatedMessage.status != kSent else { return }
+            self.update(message: updatedMessage)
+        }
+    }
+
+    func update(message: LocalMessage) {
+        messages
+            .filter { $0.messageId == message.id }
+            .forEach {
+                $0.status = message.status
+                $0.readDate = message.readAt
+                RealmManager.shared.save(message)
+                if $0.status == kRead {
+                    messagesCollectionView.reloadData()
+                }
+            }
+    }
+
     func lastMessageDate() -> Date {
         let lastDate = localMessages.last?.createdAt ?? Date()
         return Calendar.current.date(byAdding: .second, value: 1, to: lastDate) ?? lastMessageDate()
@@ -236,11 +257,20 @@ class ChatViewController: MessagesViewController {
     }
 
     func insert(message: LocalMessage) {
+        if message.senderId != User.currentId {
+            markMessageAsRead(message)
+        }
         displayingMessagesCount += 1
         let incoming = IncomingMessage(self)
         if let mkMessage = incoming.createMessage(from: message) {
             messages.append(mkMessage)
         }
+    }
+
+    func markMessageAsRead(_ message: LocalMessage) {
+        guard message.senderId != User.currentId! else { return }
+        guard message.status != kRead else { return }
+        FMessageListener.shared.update(message: message, memberIds: [User.currentId!, recipientId])
     }
 
     // MARK: - rename to "load next batch"

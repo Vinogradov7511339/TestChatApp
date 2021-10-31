@@ -53,13 +53,32 @@ class FMessageListener {
             snapshot?.documentChanges
                 .filter { $0.type == .added }
                 .compactMap { try? $0.document.data(as: LocalMessage.self) }
+                .filter { $0.senderId != User.currentId! }
                 .forEach { RealmManager.shared.save($0) }
         })
     }
 
+    func update(message: LocalMessage, memberIds: [String]) {
+        let fieldsToUpdate: [String: Any] = [kMessageStatus: kRead, kReadDate: Date()]
+        memberIds.forEach { FirebaseReference(.messages).document($0).collection(message.chatRoomId).document(message.id).updateData(fieldsToUpdate)}
+    }
+
+    func listenForReadStatusChange(_ documentId: String, collectionId: String, completion: @escaping (LocalMessage) -> Void) {
+        updatedChatListener = FirebaseReference(.messages).document(documentId).collection(collectionId).addSnapshotListener({ snapshot, error in
+            if let error = error {
+                assert(false, error.localizedDescription)
+                return
+            }
+            snapshot?.documentChanges
+                .filter { $0.type == .modified }
+                .compactMap { try? $0.document.data(as: LocalMessage.self) }
+                .forEach { completion($0) }
+
+        })
+    }
 
     func removeObservers() {
-        newChatListener.remove()
-//        updatedChatListener.remove()
+        newChatListener?.remove()
+        updatedChatListener?.remove()
     }
 }

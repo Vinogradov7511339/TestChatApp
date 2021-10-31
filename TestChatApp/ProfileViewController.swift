@@ -36,7 +36,7 @@ class ProfileViewController: UITableViewController {
         if let avatarLink = user.avatarLink {
             loadAvatar(avatarLink)
         } else {
-            avatarImageView.image = .avatar?.circleMasked
+            avatarImageView.image = .avatar?
         }
     }
 
@@ -47,7 +47,7 @@ class ProfileViewController: UITableViewController {
                 case .success(let image):
                     self.avatarImageView.image = image.circleMasked
                 case .failure(_):
-                    self.avatarImageView.image = .avatar?.circleMasked
+                    self.avatarImageView.image = .avatar?
                 }
             }
         }
