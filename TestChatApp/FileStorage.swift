@@ -13,6 +13,7 @@ import ProgressHUD
 struct NoUploadLinkError: Error {}
 struct ConvertImageError: Error {}
 struct CorruptedURLError: Error {}
+struct ConvertVideoError: Error {}
 
 class FileStorage {
 
@@ -74,7 +75,9 @@ class FileStorage {
                 if let data = NSData(contentsOf: imageURL), let fileName = fileName(from: url) {
                     FileStorage.save(file: data, name: fileName)
                     if let image = UIImage(data: data as Data) {
-                        completion(.success(image))
+                        DispatchQueue.main.async {
+                            completion(.success(image))
+                        }
                     } else {
                         completion(.failure(ConvertImageError()))
                     }
@@ -86,6 +89,62 @@ class FileStorage {
     }
 
     // MARK: - Videos
+
+    class func uploadVideo(_ video: NSData, directory: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let storageRef = storage.reference(forURL: kFilePath).child(directory)
+        var task: StorageUploadTask!
+        task = storageRef.putData(video as Data, metadata: nil) { metadata, error in
+            task.removeAllObservers()
+            ProgressHUD.dismiss()
+
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            storageRef.downloadURL { url, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let url = url {
+                    DispatchQueue.main.async {
+                        completion(.success(url.absoluteString))
+                    }
+                } else {
+                    completion(.failure(NoUploadLinkError()))
+                }
+            }
+        }
+
+        task.observe(.progress) { snapshot in
+            guard let progress = snapshot.progress else { return }
+            let percent = progress.completedUnitCount / progress.totalUnitCount
+            ProgressHUD.showProgress(CGFloat(percent))
+        }
+    }
+
+    class func downloadVideo(_ url: String, completion: @escaping (Result<(Bool, String), Error>) -> Void) {
+        let fileName = fileName(from: url)! + ".mov"
+        if isFileExist(fileName) {
+            completion(.success((true, fileName)))
+        } else {
+            guard let videoURL = URL(string: url) else {
+                completion(.failure(CorruptedURLError()))
+                return
+            }
+            let queue = DispatchQueue(label: "videoDownloadQueue")
+            queue.async {
+                DispatchQueue.main.async {
+                    if let data = NSData(contentsOf: videoURL) {
+                        FileStorage.save(file: data, name: fileName)
+                        completion(.success((true, fileName)))
+                    } else {
+                        completion(.failure(ConvertVideoError()))
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - Audio
 }
 

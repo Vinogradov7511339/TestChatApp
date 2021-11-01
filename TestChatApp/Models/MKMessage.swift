@@ -18,6 +18,7 @@ class MKMessage: NSObject, MessageType {
     var sentDate: Date
     var senderInitials: String
     var imageAttachment: ImageMessage?
+    var videoAttachment: VideoAttachment?
     var status: String
     var readDate: Date
 
@@ -40,6 +41,10 @@ class MKMessage: NSObject, MessageType {
             let item = ImageMessage(path: message.imageURL)
             kind = .photo(item)
             imageAttachment = item
+        } else if message.type == kVideoMessageType {
+            let videoItem = VideoAttachment(url: nil)
+            kind = .video(videoItem)
+            videoAttachment = videoItem
         } else {
             fatalError()
         }

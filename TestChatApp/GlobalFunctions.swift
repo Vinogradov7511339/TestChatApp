@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import AVFoundation
 
 func fileName(from path: String) -> String? {
     path.components(separatedBy: "_").last?
@@ -30,4 +32,24 @@ func timeElapsed(_ date: Date) -> String {
         elapsed = date.longDate()
     }
     return elapsed
+}
+
+func videoThumbnail(pathToVideo: URL) -> UIImage {
+    let asset = AVURLAsset(url: pathToVideo)
+    let imageGenerator = AVAssetImageGenerator(asset: asset)
+    imageGenerator.appliesPreferredTrackTransform = true
+
+    let time = CMTimeMakeWithSeconds(1, preferredTimescale: 1000)
+    var actualTime = CMTime.zero
+    var cgImage: CGImage?
+    do {
+        cgImage = try imageGenerator.copyCGImage(at: time, actualTime: &actualTime)
+    } catch {
+        assert(false, error.localizedDescription)
+    }
+    if let cgImage = cgImage {
+        return UIImage(cgImage: cgImage)
+    } else {
+        return .imagePlaceholder!
+    }
 }

@@ -7,7 +7,29 @@
 
 import Foundation
 import MessageKit
+import AVFoundation
+import AVKit
+import SKPhotoBrowser
 
 extension ChatViewController: MessageCellDelegate {
 
+    func didTapImage(in cell: MessageCollectionViewCell) {
+        guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
+        let message = messages[indexPath.section]
+        if let image = message.imageAttachment?.image {
+            let skImage = SKPhoto.photoWithImage(image)
+            let browser = SKPhotoBrowser(photos: [skImage])
+            browser.initializePageIndex(0)
+            present(browser, animated: true, completion: nil)
+        } else if let videoURL = message.videoAttachment?.url {
+            let player = AVPlayer(url: videoURL)
+            let controller = AVPlayerViewController()
+            let session = AVAudioSession.sharedInstance()
+            try! session.setCategory(.playAndRecord, mode: .default, options: .defaultToSpeaker)
+            controller.player = player
+            present(controller, animated: true) {
+                controller.player?.play()
+            }
+        }
+    }
 }

@@ -47,6 +47,7 @@
 		AD80166E272D360E00A6AA82 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166D272D360E00A6AA82 /* IncomingMessage.swift */; };
 		AD801670272EC5F500A6AA82 /* FTypingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166F272EC5F500A6AA82 /* FTypingListener.swift */; };
 		AD9533C6272FEFBC00481BEB /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533C5272FEFBC00481BEB /* ImageMessage.swift */; };
+		AD9533C827300F9100481BEB /* VideoAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533C727300F9100481BEB /* VideoAttachment.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -100,6 +101,7 @@
 		AD80166D272D360E00A6AA82 /* IncomingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
 		AD80166F272EC5F500A6AA82 /* FTypingListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTypingListener.swift; sourceTree = "<group>"; };
 		AD9533C5272FEFBC00481BEB /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
+		AD9533C727300F9100481BEB /* VideoAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAttachment.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 				AD801669272C4D2400A6AA82 /* OutgoingMessage.swift */,
 				AD80166D272D360E00A6AA82 /* IncomingMessage.swift */,
 				AD9533C5272FEFBC00481BEB /* ImageMessage.swift */,
+				AD9533C727300F9100481BEB /* VideoAttachment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				AD80166E272D360E00A6AA82 /* IncomingMessage.swift in Sources */,
 				ADBC205F2727203D003FEE82 /* ResetPasswordViewController.swift in Sources */,
 				AD80164E27298BFF00A6AA82 /* StartChat.swift in Sources */,
+				AD9533C827300F9100481BEB /* VideoAttachment.swift in Sources */,
 				ADBC20562726CF1D003FEE82 /* FCollectionReference.swift in Sources */,
 				AD801635272863EC00A6AA82 /* GlobalFunctions.swift in Sources */,
 				AD801658272C300700A6AA82 /* MessagesDataSource.swift in Sources */,

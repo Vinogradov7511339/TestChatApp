@@ -9,14 +9,17 @@ import Foundation
 import UIKit
 import Firebase
 import FirebaseFirestoreSwift
+import Gallery
 
 class OutgoingMessage {
-    class func send(chatId: String, text: String?, image: UIImage?, video: String?, audio: String?, audioDuration: Float?, location: String?, memberIds: [String]) {
+    class func send(chatId: String, text: String?, image: UIImage?, video: Video?, audio: String?, audioDuration: Float?, location: String?, memberIds: [String]) {
         let message = defaultMessage(chatId: chatId)
         if let text = text {
             sendTextMessage(message, text: text, memberIds: memberIds)
         } else if let image = image {
             sendImageMessage(message, image: image, memberIds: memberIds)
+        } else if let video = video {
+            sendVideoMessage(message, video: video, memberIds: memberIds)
         }
         FRecentListener.shared.updateRecent(chatroomId: chatId, lastMessage: message.message)
     }
@@ -64,6 +67,42 @@ private extension OutgoingMessage {
         }
     }
 
+    class func sendVideoMessage(_ message: LocalMessage, video: Video, memberIds: [String]) {
+        message.message = Const.video
+        message.type = kVideoMessageType
+        let fileName = Date().string()
+        let thumbnailDirectory = "MediaMessages/Photo/" + message.chatRoomId + "_\(fileName)" + ".jpg"
+        let fileDirectory = "MediaMessages/Video/" + message.chatRoomId + "_\(fileName)" + ".mov"
+        let editor = VideoEditor()
+        editor.process(video: video) { video, tempPath in
+            guard let tempPath = tempPath else {
+                assert(false, "No path for video")
+                return
+            }
+            let thumbnail = videoThumbnail(pathToVideo: tempPath)
+            FileStorage.save(file: thumbnail.jpegData(compressionQuality: 0.7)! as NSData, name: fileName)
+            FileStorage.uploadImage(thumbnail, directory: thumbnailDirectory) { result in
+                switch result {
+                case .success(let thumbnailLink):
+                    let videoData = NSData(contentsOfFile: tempPath.path)
+                    FileStorage.save(file: videoData!, name: fileName + ".mov")
+                    FileStorage.uploadVideo(videoData!, directory: fileDirectory) { result in
+                        switch result {
+                        case .success(let videoPath):
+                            message.imageURL = thumbnailLink
+                            message.videoURL = videoPath
+                            send(message: message, memberIds: memberIds)
+                        case .failure(let error):
+                            assert(false, error.localizedDescription)
+                        }
+                    }
+                case .failure(let error):
+                    assert(false, error.localizedDescription)
+                }
+            }
+        }
+    }
+
     class func send(message: LocalMessage, memberIds: [String]) {
         RealmManager.shared.save(message)
         memberIds.forEach { FMessageListener.shared.add(message: message, memberId: $0) }
@@ -73,5 +112,6 @@ private extension OutgoingMessage {
 extension OutgoingMessage {
     enum Const {
         static let image = NSLocalizedString("", value: "image", comment: "")
+        static let video = NSLocalizedString("", value: "video", comment: "")
     }
 }

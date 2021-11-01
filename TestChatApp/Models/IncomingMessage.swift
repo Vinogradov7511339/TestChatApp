@@ -34,6 +34,30 @@ class IncomingMessage {
                     assert(false, error.localizedDescription)
                 }
             }
+        } else if localMessage.type == kVideoMessageType {
+            FileStorage.downloadImage(localMessage.imageURL) { result in
+                switch result {
+                case .success(let thumbnail):
+                    FileStorage.downloadVideo(localMessage.videoURL) { result in
+                        switch result {
+                        case .success(let isReadyToPlay, let fileName):
+                            let path = FileStorage.filePath(for: fileName)
+                            let videoURL = URL(fileURLWithPath: path)
+                            let videoItem = VideoAttachment(url: videoURL)
+                            mkMessage.videoAttachment = videoItem
+                            mkMessage.kind = .video(videoItem)
+                            mkMessage.videoAttachment?.image = thumbnail
+                            DispatchQueue.main.async {
+                                self.messageViewController.messagesCollectionView.reloadData()
+                            }
+                        case .failure(let error):
+                            assert(false, error.localizedDescription)
+                        }
+                    }
+                case .failure(let error):
+                    assert(false, error.localizedDescription)
+                }
+            }
         }
         return mkMessage
     }
