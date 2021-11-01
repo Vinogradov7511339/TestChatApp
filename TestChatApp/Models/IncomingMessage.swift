@@ -58,6 +58,11 @@ class IncomingMessage {
                     assert(false, error.localizedDescription)
                 }
             }
+        } else if localMessage.type == kLocationMessageType {
+            let location = CLLocation(latitude: localMessage.latitude, longitude: localMessage.longitude)
+            let locationItem = LocationAttachment(location)
+            mkMessage.kind = .location(locationItem)
+            mkMessage.locationAttachment = locationItem
         }
         return mkMessage
     }

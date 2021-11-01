@@ -19,6 +19,7 @@ class MKMessage: NSObject, MessageType {
     var senderInitials: String
     var imageAttachment: ImageMessage?
     var videoAttachment: VideoAttachment?
+    var locationAttachment: LocationAttachment?
     var status: String
     var readDate: Date
 
@@ -45,8 +46,13 @@ class MKMessage: NSObject, MessageType {
             let videoItem = VideoAttachment(url: nil)
             kind = .video(videoItem)
             videoAttachment = videoItem
+        } else if message.type == kLocationMessageType {
+            let location = CLLocation(latitude: message.latitude, longitude: message.longitude)
+            let attachment = LocationAttachment(location)
+            kind = .location(attachment)
+            locationAttachment = attachment
         } else {
-            fatalError()
+            kind = .text("Unknown type")
         }
     }
 }

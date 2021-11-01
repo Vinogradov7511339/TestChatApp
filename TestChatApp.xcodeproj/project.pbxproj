@@ -48,6 +48,10 @@
 		AD801670272EC5F500A6AA82 /* FTypingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166F272EC5F500A6AA82 /* FTypingListener.swift */; };
 		AD9533C6272FEFBC00481BEB /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533C5272FEFBC00481BEB /* ImageMessage.swift */; };
 		AD9533C827300F9100481BEB /* VideoAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533C727300F9100481BEB /* VideoAttachment.swift */; };
+		AD9533CA273025EA00481BEB /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533C9273025EA00481BEB /* LocationManager.swift */; };
+		AD9533CC27302DA900481BEB /* LocationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533CB27302DA900481BEB /* LocationAttachment.swift */; };
+		AD9533CE27304FC600481BEB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533CD27304FC600481BEB /* MapViewController.swift */; };
+		AD9533D0273053F900481BEB /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533CF273053F900481BEB /* MapAnnotation.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -102,6 +106,10 @@
 		AD80166F272EC5F500A6AA82 /* FTypingListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTypingListener.swift; sourceTree = "<group>"; };
 		AD9533C5272FEFBC00481BEB /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
 		AD9533C727300F9100481BEB /* VideoAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoAttachment.swift; sourceTree = "<group>"; };
+		AD9533C9273025EA00481BEB /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		AD9533CB27302DA900481BEB /* LocationAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAttachment.swift; sourceTree = "<group>"; };
+		AD9533CD27304FC600481BEB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		AD9533CF273053F900481BEB /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -166,6 +174,7 @@
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
 				AD801656272C2FEE00A6AA82 /* ChatScreen */,
 				AD8016432729618900A6AA82 /* ProfileViewController.swift */,
+				AD9533CD27304FC600481BEB /* MapViewController.swift */,
 				AD801653272BE54800A6AA82 /* RecentChatsScreen */,
 				AD80164A27297C0400A6AA82 /* UsersListScreen */,
 				AD80164927297BF100A6AA82 /* LoginScreen */,
@@ -174,6 +183,7 @@
 				AD801634272863EC00A6AA82 /* GlobalFunctions.swift */,
 				ADBC205A2726D8CE003FEE82 /* LocalStorage.swift */,
 				AD80164D27298BFF00A6AA82 /* StartChat.swift */,
+				AD9533C9273025EA00481BEB /* LocationManager.swift */,
 				AD801667272C49B600A6AA82 /* RealmManager.swift */,
 				AD801632272849E400A6AA82 /* FileStorage.swift */,
 				AD801661272C335C00A6AA82 /* MKHelpers.swift */,
@@ -254,6 +264,8 @@
 				AD80166D272D360E00A6AA82 /* IncomingMessage.swift */,
 				AD9533C5272FEFBC00481BEB /* ImageMessage.swift */,
 				AD9533C727300F9100481BEB /* VideoAttachment.swift */,
+				AD9533CB27302DA900481BEB /* LocationAttachment.swift */,
+				AD9533CF273053F900481BEB /* MapAnnotation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -395,6 +407,7 @@
 				AD801635272863EC00A6AA82 /* GlobalFunctions.swift in Sources */,
 				AD801658272C300700A6AA82 /* MessagesDataSource.swift in Sources */,
 				ADBC20512726C7FB003FEE82 /* User.swift in Sources */,
+				AD9533CE27304FC600481BEB /* MapViewController.swift in Sources */,
 				AD801637272870BC00A6AA82 /* UIImage+circle.swift in Sources */,
 				AD80165E272C309000A6AA82 /* MessagesLayoutDelegate.swift in Sources */,
 				AD80166A272C4D2400A6AA82 /* OutgoingMessage.swift in Sources */,
@@ -405,6 +418,7 @@
 				ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */,
 				AD801633272849E400A6AA82 /* FileStorage.swift in Sources */,
 				AD9533C6272FEFBC00481BEB /* ImageMessage.swift in Sources */,
+				AD9533CC27302DA900481BEB /* LocationAttachment.swift in Sources */,
 				AD801655272C0D8800A6AA82 /* ChatViewController.swift in Sources */,
 				AD80164C27298A1100A6AA82 /* Date+extensions.swift in Sources */,
 				AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */,
@@ -414,6 +428,7 @@
 				AD801664272C361E00A6AA82 /* MKMessage.swift in Sources */,
 				AD8016392729218300A6AA82 /* Status.swift in Sources */,
 				AD801670272EC5F500A6AA82 /* FTypingListener.swift in Sources */,
+				AD9533D0273053F900481BEB /* MapAnnotation.swift in Sources */,
 				AD801631272830B100A6AA82 /* EditProfileViewController.swift in Sources */,
 				AD80164627296B8400A6AA82 /* RecentChat.swift in Sources */,
 				AD80163E27293E7600A6AA82 /* UserCell.swift in Sources */,
@@ -422,6 +437,7 @@
 				AD80164827297BE500A6AA82 /* RecentCell.swift in Sources */,
 				AD7150BD2725D47F0085E1C6 /* SceneDelegate.swift in Sources */,
 				ADBC20592726D3F5003FEE82 /* FUserListener.swift in Sources */,
+				AD9533CA273025EA00481BEB /* LocationManager.swift in Sources */,
 				AD8016502729933200A6AA82 /* FRecentListener.swift in Sources */,
 				AD80162F2728198200A6AA82 /* UIColor+names.swift in Sources */,
 				AD8016442729618A00A6AA82 /* ProfileViewController.swift in Sources */,

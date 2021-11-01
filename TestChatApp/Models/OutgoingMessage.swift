@@ -20,6 +20,8 @@ class OutgoingMessage {
             sendImageMessage(message, image: image, memberIds: memberIds)
         } else if let video = video {
             sendVideoMessage(message, video: video, memberIds: memberIds)
+        } else if location != nil {
+            sendLocationMessage(message, memberIds: memberIds)
         }
         FRecentListener.shared.updateRecent(chatroomId: chatId, lastMessage: message.message)
     }
@@ -103,6 +105,15 @@ private extension OutgoingMessage {
         }
     }
 
+    class func sendLocationMessage(_ message: LocalMessage, memberIds: [String]) {
+        let location = LocationManager.shared.currentLocation
+        message.message = Const.location
+        message.type = kLocationMessageType
+        message.latitude = location?.latitude ?? 0.0
+        message.longitude = location?.longitude ?? 0.0
+        send(message: message, memberIds: memberIds)
+    }
+
     class func send(message: LocalMessage, memberIds: [String]) {
         RealmManager.shared.save(message)
         memberIds.forEach { FMessageListener.shared.add(message: message, memberId: $0) }
@@ -113,5 +124,6 @@ extension OutgoingMessage {
     enum Const {
         static let image = NSLocalizedString("", value: "image", comment: "")
         static let video = NSLocalizedString("", value: "video", comment: "")
+        static let location = NSLocalizedString("", value: "location", comment: "")
     }
 }

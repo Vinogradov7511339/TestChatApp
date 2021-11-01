@@ -113,7 +113,8 @@ class ChatViewController: MessagesViewController {
             self.showImageGallery(camera: false)
         }
         let location = UIAlertAction(title: Const.shareLocation, style: .default) { _ in
-
+            guard LocationManager.shared.currentLocation != nil else { return }
+            self.messageSend(text: nil, image: nil, video: nil, audio: nil, location: kLocationMessageType, audioDuration: nil)
         }
         let cancel = UIAlertAction(title: Const.cancel, style: .cancel)
 

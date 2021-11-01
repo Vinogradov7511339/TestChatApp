@@ -32,4 +32,13 @@ extension ChatViewController: MessageCellDelegate {
             }
         }
     }
+
+    func didTapMessage(in cell: MessageCollectionViewCell) {
+        guard let indexPath = messagesCollectionView.indexPath(for: cell) else { return }
+        let message = messages[indexPath.section]
+        guard let location = message.locationAttachment?.location else { return }
+        let controller = MapViewController()
+        controller.location = location
+        navigationController?.pushViewController(controller, animated: true)
+    }
 }
