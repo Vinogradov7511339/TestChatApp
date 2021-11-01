@@ -63,6 +63,8 @@ class ChatViewController: MessagesViewController {
 
     var typingCounter = 0
 
+    var gallery: GalleryController!
+
     // MARK: - Lifecycle
 
     init(recent: RecentChat) {
@@ -101,6 +103,30 @@ class ChatViewController: MessagesViewController {
         navigationController?.popViewController(animated: true)
     }
 
+    func showAttachmentsDialog() {
+        messageInputBar.inputTextView.resignFirstResponder()
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: Const.camera, style: .default) { _ in
+            self.showImageGallery(camera: true)
+        }
+        let media = UIAlertAction(title: Const.library, style: .default) { _ in
+            self.showImageGallery(camera: false)
+        }
+        let location = UIAlertAction(title: Const.shareLocation, style: .default) { _ in
+
+        }
+        let cancel = UIAlertAction(title: Const.cancel, style: .cancel)
+
+        camera.setValue(UIImage.camera, forKey: "image")
+        media.setValue(UIImage.photo, forKey: "image")
+        location.setValue(UIImage.mapPin, forKey: "image")
+        alert.addAction(camera)
+        alert.addAction(media)
+        alert.addAction(location)
+        alert.addAction(cancel)
+        present(alert, animated: true, completion: nil)
+    }
+
     func configureBackBarButtonItem() {
         let button = UIBarButtonItem(image: .back, style: .plain, target: self, action: #selector(goBack))
         navigationItem.leftBarButtonItems = [button]
@@ -131,7 +157,9 @@ class ChatViewController: MessagesViewController {
         addAttachmentButton.image = .plus
         let attchmentButtonSize = CGSize(width: 30.0, height: 30.0)
         addAttachmentButton.setSize(attchmentButtonSize, animated: false)
-        addAttachmentButton.onTouchUpInside { _ in }
+        addAttachmentButton.onTouchUpInside { _ in
+            self.showAttachmentsDialog()
+        }
 
         micButton.image = .mic
         let micButtonSize = CGSize(width: 30.0, height: 30.0)
@@ -320,11 +348,52 @@ extension ChatViewController {
             }
         }
     }
+
+    func showImageGallery(camera: Bool) {
+        gallery = GalleryController()
+        gallery.delegate = self
+        Config.tabsToShow = camera ? [.cameraTab] : [.imageTab, .videoTab]
+        Config.Camera.imageLimit = 1
+        Config.initialTab = .imageTab
+        Config.VideoEditor.maximumDuration = 30.0
+        present(gallery, animated: true, completion: nil)
+    }
+}
+
+// MARK: - GalleryControllerDelegate
+extension ChatViewController: GalleryControllerDelegate {
+    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+        guard let image = images.first else { return }
+        image.resolve { uiImage in
+            if let uiImage = uiImage {
+                self.messageSend(text: nil, image: uiImage, video: nil, audio: nil, location: nil, audioDuration: nil)
+            } else {
+                assert(false, "corrupted image")
+            }
+        }
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+    func galleryControllerDidCancel(_ controller: GalleryController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension ChatViewController {
     enum Const {
         static let typing = NSLocalizedString("", value: "Typing ...", comment: "")
         static let emptyText = NSLocalizedString("", value: "", comment: "")
+        static let camera = NSLocalizedString("", value: "Camera", comment: "")
+        static let library = NSLocalizedString("", value: "Library", comment: "")
+        static let shareLocation = NSLocalizedString("", value: "Share Location", comment: "")
+        static let cancel = NSLocalizedString("", value: "Cancel", comment: "")
     }
 }

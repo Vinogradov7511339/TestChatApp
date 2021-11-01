@@ -46,6 +46,7 @@
 		AD80166C272C594700A6AA82 /* FMessageListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166B272C594700A6AA82 /* FMessageListener.swift */; };
 		AD80166E272D360E00A6AA82 /* IncomingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166D272D360E00A6AA82 /* IncomingMessage.swift */; };
 		AD801670272EC5F500A6AA82 /* FTypingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD80166F272EC5F500A6AA82 /* FTypingListener.swift */; };
+		AD9533C6272FEFBC00481BEB /* ImageMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533C5272FEFBC00481BEB /* ImageMessage.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -98,6 +99,7 @@
 		AD80166B272C594700A6AA82 /* FMessageListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMessageListener.swift; sourceTree = "<group>"; };
 		AD80166D272D360E00A6AA82 /* IncomingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomingMessage.swift; sourceTree = "<group>"; };
 		AD80166F272EC5F500A6AA82 /* FTypingListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTypingListener.swift; sourceTree = "<group>"; };
+		AD9533C5272FEFBC00481BEB /* ImageMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessage.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				AD801665272C37F900A6AA82 /* LocalMessage.swift */,
 				AD801669272C4D2400A6AA82 /* OutgoingMessage.swift */,
 				AD80166D272D360E00A6AA82 /* IncomingMessage.swift */,
+				AD9533C5272FEFBC00481BEB /* ImageMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				AD801668272C49B600A6AA82 /* RealmManager.swift in Sources */,
 				ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */,
 				AD801633272849E400A6AA82 /* FileStorage.swift in Sources */,
+				AD9533C6272FEFBC00481BEB /* ImageMessage.swift in Sources */,
 				AD801655272C0D8800A6AA82 /* ChatViewController.swift in Sources */,
 				AD80164C27298A1100A6AA82 /* Date+extensions.swift in Sources */,
 				AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */,

@@ -17,6 +17,7 @@ class MKMessage: NSObject, MessageType {
     var incoming: Bool
     var sentDate: Date
     var senderInitials: String
+    var imageAttachment: ImageMessage?
     var status: String
     var readDate: Date
 
@@ -26,12 +27,21 @@ class MKMessage: NSObject, MessageType {
 
     init(_ message: LocalMessage) {
         messageId = message.id
-        kind = .text(message.message)
         senderMK = MKSender(senderId: message.senderId, displayName: message.senderName)
         incoming = User.currentId! != message.senderId
         sentDate = message.createdAt
         senderInitials = message.senderInitials
         status = message.status
         readDate = message.readAt
+
+        if message.type == kTextMessageType {
+            kind = .text(message.message)
+        } else if message.type == kImageMessageType {
+            let item = ImageMessage(path: message.imageURL)
+            kind = .photo(item)
+            imageAttachment = item
+        } else {
+            fatalError()
+        }
     }
 }
