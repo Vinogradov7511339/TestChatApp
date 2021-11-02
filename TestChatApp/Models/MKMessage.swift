@@ -20,6 +20,7 @@ class MKMessage: NSObject, MessageType {
     var imageAttachment: ImageMessage?
     var videoAttachment: VideoAttachment?
     var locationAttachment: LocationAttachment?
+    var audioAttachment: AudioAttachment?
     var status: String
     var readDate: Date
 
@@ -51,6 +52,10 @@ class MKMessage: NSObject, MessageType {
             let attachment = LocationAttachment(location)
             kind = .location(attachment)
             locationAttachment = attachment
+        } else if message.type == kAudioMessageType {
+            let attachment = AudioAttachment(duration: 2.0)
+            kind = .audio(attachment)
+            audioAttachment = attachment
         } else {
             kind = .text("Unknown type")
         }

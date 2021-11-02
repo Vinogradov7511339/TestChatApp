@@ -22,6 +22,8 @@ class OutgoingMessage {
             sendVideoMessage(message, video: video, memberIds: memberIds)
         } else if location != nil {
             sendLocationMessage(message, memberIds: memberIds)
+        } else if let audio = audio, let duration = audioDuration {
+            sendAudioMessage(message, audio: audio, duration: duration, memberIds: memberIds)
         }
         FRecentListener.shared.updateRecent(chatroomId: chatId, lastMessage: message.message)
     }
@@ -114,6 +116,22 @@ private extension OutgoingMessage {
         send(message: message, memberIds: memberIds)
     }
 
+    class func sendAudioMessage(_ message: LocalMessage, audio: String, duration: Float, memberIds: [String]) {
+        message.message = Const.audio
+        message.type = kAudioMessageType
+        let filePath = "MediaMessages/Audio/" + message.chatRoomId + "_\(audio)" + ".m4a"
+        FileStorage.uploadAudio(audioFileName: audio, directory: filePath) { result in
+            switch result {
+            case .success(let pathToFile):
+                message.audioURL = pathToFile
+                message.audioDuration = Double(duration)
+                send(message: message, memberIds: memberIds)
+            case .failure(let error):
+                assert(false, error.localizedDescription)
+            }
+        }
+    }
+
     class func send(message: LocalMessage, memberIds: [String]) {
         RealmManager.shared.save(message)
         memberIds.forEach { FMessageListener.shared.add(message: message, memberId: $0) }
@@ -125,5 +143,6 @@ extension OutgoingMessage {
         static let image = NSLocalizedString("", value: "image", comment: "")
         static let video = NSLocalizedString("", value: "video", comment: "")
         static let location = NSLocalizedString("", value: "location", comment: "")
+        static let audio = NSLocalizedString("", value: "audio", comment: "")
     }
 }

@@ -52,6 +52,9 @@
 		AD9533CC27302DA900481BEB /* LocationAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533CB27302DA900481BEB /* LocationAttachment.swift */; };
 		AD9533CE27304FC600481BEB /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533CD27304FC600481BEB /* MapViewController.swift */; };
 		AD9533D0273053F900481BEB /* MapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533CF273053F900481BEB /* MapAnnotation.swift */; };
+		AD9533D22730653800481BEB /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533D12730653800481BEB /* AudioRecorder.swift */; };
+		AD9533D42730768600481BEB /* AudioAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533D32730768600481BEB /* AudioAttachment.swift */; };
+		AD9533D627311E2900481BEB /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533D527311E2900481BEB /* BasicAudioController.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -110,6 +113,9 @@
 		AD9533CB27302DA900481BEB /* LocationAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAttachment.swift; sourceTree = "<group>"; };
 		AD9533CD27304FC600481BEB /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AD9533CF273053F900481BEB /* MapAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAnnotation.swift; sourceTree = "<group>"; };
+		AD9533D12730653800481BEB /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		AD9533D32730768600481BEB /* AudioAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAttachment.swift; sourceTree = "<group>"; };
+		AD9533D527311E2900481BEB /* BasicAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -183,6 +189,8 @@
 				AD801634272863EC00A6AA82 /* GlobalFunctions.swift */,
 				ADBC205A2726D8CE003FEE82 /* LocalStorage.swift */,
 				AD80164D27298BFF00A6AA82 /* StartChat.swift */,
+				AD9533D527311E2900481BEB /* BasicAudioController.swift */,
+				AD9533D12730653800481BEB /* AudioRecorder.swift */,
 				AD9533C9273025EA00481BEB /* LocationManager.swift */,
 				AD801667272C49B600A6AA82 /* RealmManager.swift */,
 				AD801632272849E400A6AA82 /* FileStorage.swift */,
@@ -265,6 +273,7 @@
 				AD9533C5272FEFBC00481BEB /* ImageMessage.swift */,
 				AD9533C727300F9100481BEB /* VideoAttachment.swift */,
 				AD9533CB27302DA900481BEB /* LocationAttachment.swift */,
+				AD9533D32730768600481BEB /* AudioAttachment.swift */,
 				AD9533CF273053F900481BEB /* MapAnnotation.swift */,
 			);
 			path = Models;
@@ -403,7 +412,9 @@
 				ADBC205F2727203D003FEE82 /* ResetPasswordViewController.swift in Sources */,
 				AD80164E27298BFF00A6AA82 /* StartChat.swift in Sources */,
 				AD9533C827300F9100481BEB /* VideoAttachment.swift in Sources */,
+				AD9533D42730768600481BEB /* AudioAttachment.swift in Sources */,
 				ADBC20562726CF1D003FEE82 /* FCollectionReference.swift in Sources */,
+				AD9533D22730653800481BEB /* AudioRecorder.swift in Sources */,
 				AD801635272863EC00A6AA82 /* GlobalFunctions.swift in Sources */,
 				AD801658272C300700A6AA82 /* MessagesDataSource.swift in Sources */,
 				ADBC20512726C7FB003FEE82 /* User.swift in Sources */,
@@ -421,6 +432,7 @@
 				AD9533CC27302DA900481BEB /* LocationAttachment.swift in Sources */,
 				AD801655272C0D8800A6AA82 /* ChatViewController.swift in Sources */,
 				AD80164C27298A1100A6AA82 /* Date+extensions.swift in Sources */,
+				AD9533D627311E2900481BEB /* BasicAudioController.swift in Sources */,
 				AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */,
 				AD7150BB2725D47F0085E1C6 /* AppDelegate.swift in Sources */,
 				AD801662272C335C00A6AA82 /* MKHelpers.swift in Sources */,

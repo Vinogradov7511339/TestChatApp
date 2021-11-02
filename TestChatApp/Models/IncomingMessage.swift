@@ -63,6 +63,21 @@ class IncomingMessage {
             let locationItem = LocationAttachment(location)
             mkMessage.kind = .location(locationItem)
             mkMessage.locationAttachment = locationItem
+        } else if localMessage.type == kAudioMessageType {
+            let audioItem = AudioAttachment(duration: Float(localMessage.audioDuration))
+            mkMessage.audioAttachment = audioItem
+            mkMessage.kind = .audio(audioItem)
+            FileStorage.downloadAudio(localMessage.audioURL) { result in
+                switch result {
+                case .success(let pathToAudio):
+                    let path = FileStorage.filePath(for: pathToAudio)
+                    let audioURL = URL(fileURLWithPath: path)
+                    mkMessage.audioAttachment?.url = audioURL
+                    self.messageViewController.messagesCollectionView.reloadData()
+                case .failure(let error):
+                    assert(false, error.localizedDescription)
+                }
+            }
         }
         return mkMessage
     }

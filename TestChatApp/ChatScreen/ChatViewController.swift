@@ -65,6 +65,12 @@ class ChatViewController: MessagesViewController {
 
     var gallery: GalleryController!
 
+    var longPressGesture: UILongPressGestureRecognizer!
+    var audioFileName = ""
+    var audioDuration: Date!
+
+    lazy var audioController = BasicAudioController(messageCollectionView: messagesCollectionView)
+
     // MARK: - Lifecycle
 
     init(recent: RecentChat) {
@@ -87,6 +93,7 @@ class ChatViewController: MessagesViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureGestureRecognizer()
         configureBackBarButtonItem()
         configureNavBar()
         configureCollectonView()
@@ -97,10 +104,38 @@ class ChatViewController: MessagesViewController {
         listenForReadMessageStatusChange()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        FRecentListener.shared.resetUnreadCounter(for: chatId)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        audioController.stopAnyOngoingPlaying()
+        FRecentListener.shared.resetUnreadCounter(for: chatId)
+    }
+
     @objc func goBack() {
         FRecentListener.shared.resetUnreadCounter(for: chatId)
         removeListeners()
         navigationController?.popViewController(animated: true)
+    }
+
+    @objc func startRecordingAudio() {
+        switch longPressGesture.state {
+        case .began:
+            audioDuration = Date()
+            audioFileName = Date().string()
+            AudioRecorder.shared.startRecording(fileName: audioFileName)
+        case .ended:
+            AudioRecorder.shared.finishRecording()
+            guard FileStorage.isFileExist(audioFileName + ".m4a") else { return }
+            let duration = audioDuration.interval(of: .second, from: Date())
+            messageSend(text: nil, image: nil, video: nil, audio: audioFileName, location: nil, audioDuration: duration)
+            audioFileName = ""
+        default:
+            break
+        }
     }
 
     func showAttachmentsDialog() {
@@ -165,7 +200,7 @@ class ChatViewController: MessagesViewController {
         micButton.image = .mic
         let micButtonSize = CGSize(width: 30.0, height: 30.0)
         micButton.setSize(micButtonSize, animated: false)
-        // TODO: - gesture recognizer
+        micButton.addGestureRecognizer(longPressGesture)
 
         messageInputBar.delegate = self
         messageInputBar.setStackViewItems([addAttachmentButton], forStack: .left, animated: false)
@@ -174,6 +209,12 @@ class ChatViewController: MessagesViewController {
         messageInputBar.inputTextView.isImagePasteEnabled = false
         messageInputBar.backgroundView.backgroundColor = .systemBackground
         messageInputBar.inputTextView.backgroundColor = .systemBackground
+    }
+
+    func configureGestureRecognizer() {
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(startRecordingAudio))
+        longPressGesture.minimumPressDuration = 1.0
+        longPressGesture.delaysTouchesBegan = true
     }
 
     func updateSubtitleState(_ show: Bool) {

@@ -146,6 +146,74 @@ class FileStorage {
     }
 
     // MARK: - Audio
+
+    class func uploadAudio(audioFileName: String, directory: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let fileName = audioFileName + ".m4a"
+        guard isFileExist(fileName) else {
+            assert(false, "file not exist: \(fileName)")
+            return
+        }
+
+        let file = filePath(for: fileName)
+        guard let audioData = NSData(contentsOfFile: file) else {
+            assert(false, "corrupted audio data")
+            return
+        }
+
+        let storageRef = storage.reference(forURL: kFilePath).child(directory)
+        var task: StorageUploadTask!
+
+        task = storageRef.putData(audioData as Data, metadata: nil) { metadata, error in
+            task.removeAllObservers()
+            ProgressHUD.dismiss()
+
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            storageRef.downloadURL { url, error in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let url = url {
+                    DispatchQueue.main.async {
+                        completion(.success(url.absoluteString))
+                    }
+                } else {
+                    completion(.failure(NoUploadLinkError()))
+                }
+            }
+        }
+
+        task.observe(.progress) { snapshot in
+            guard let progress = snapshot.progress else { return }
+            let percent = progress.completedUnitCount / progress.totalUnitCount
+            ProgressHUD.showProgress(CGFloat(percent))
+        }
+    }
+
+    class func downloadAudio(_ url: String, completion: @escaping (Result<(String), Error>) -> Void) {
+        let fileName = fileName(from: url)! + ".m4a"
+        if isFileExist(fileName) {
+            completion(.success(fileName))
+        } else {
+            guard let audioURL = URL(string: url) else {
+                completion(.failure(CorruptedURLError()))
+                return
+            }
+            let queue = DispatchQueue(label: "audioDownloadQueue")
+            queue.async {
+                DispatchQueue.main.async {
+                    if let data = NSData(contentsOf: audioURL) {
+                        FileStorage.save(file: data, name: fileName)
+                        completion(.success(fileName))
+                    } else {
+                        completion(.failure(ConvertVideoError()))
+                    }
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Helpers
