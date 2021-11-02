@@ -55,6 +55,9 @@
 		AD9533D22730653800481BEB /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533D12730653800481BEB /* AudioRecorder.swift */; };
 		AD9533D42730768600481BEB /* AudioAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533D32730768600481BEB /* AudioAttachment.swift */; };
 		AD9533D627311E2900481BEB /* BasicAudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533D527311E2900481BEB /* BasicAudioController.swift */; };
+		AD9533D8273133DD00481BEB /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533D7273133DD00481BEB /* ChannelsViewController.swift */; };
+		AD9533DB273135CE00481BEB /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533DA273135CE00481BEB /* Channel.swift */; };
+		AD9533DD273137B300481BEB /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533DC273137B300481BEB /* ChannelCell.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -116,6 +119,9 @@
 		AD9533D12730653800481BEB /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		AD9533D32730768600481BEB /* AudioAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioAttachment.swift; sourceTree = "<group>"; };
 		AD9533D527311E2900481BEB /* BasicAudioController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicAudioController.swift; sourceTree = "<group>"; };
+		AD9533D7273133DD00481BEB /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
+		AD9533DA273135CE00481BEB /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		AD9533DC273137B300481BEB /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -180,6 +186,7 @@
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
 				AD801656272C2FEE00A6AA82 /* ChatScreen */,
 				AD8016432729618900A6AA82 /* ProfileViewController.swift */,
+				AD9533D9273135B900481BEB /* ChannelsScreen */,
 				AD9533CD27304FC600481BEB /* MapViewController.swift */,
 				AD801653272BE54800A6AA82 /* RecentChatsScreen */,
 				AD80164A27297C0400A6AA82 /* UsersListScreen */,
@@ -260,6 +267,15 @@
 			path = ChatScreen;
 			sourceTree = "<group>";
 		};
+		AD9533D9273135B900481BEB /* ChannelsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				AD9533D7273133DD00481BEB /* ChannelsViewController.swift */,
+				AD9533DC273137B300481BEB /* ChannelCell.swift */,
+			);
+			path = ChannelsScreen;
+			sourceTree = "<group>";
+		};
 		ADBC20522726C817003FEE82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -275,6 +291,7 @@
 				AD9533CB27302DA900481BEB /* LocationAttachment.swift */,
 				AD9533D32730768600481BEB /* AudioAttachment.swift */,
 				AD9533CF273053F900481BEB /* MapAnnotation.swift */,
+				AD9533DA273135CE00481BEB /* Channel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,6 +424,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9533D8273133DD00481BEB /* ChannelsViewController.swift in Sources */,
 				AD80165A272C304D00A6AA82 /* MessageCellDelegate.swift in Sources */,
 				AD80166E272D360E00A6AA82 /* IncomingMessage.swift in Sources */,
 				ADBC205F2727203D003FEE82 /* ResetPasswordViewController.swift in Sources */,
@@ -435,12 +453,14 @@
 				AD9533D627311E2900481BEB /* BasicAudioController.swift in Sources */,
 				AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */,
 				AD7150BB2725D47F0085E1C6 /* AppDelegate.swift in Sources */,
+				AD9533DB273135CE00481BEB /* Channel.swift in Sources */,
 				AD801662272C335C00A6AA82 /* MKHelpers.swift in Sources */,
 				ADBC205B2726D8CE003FEE82 /* LocalStorage.swift in Sources */,
 				AD801664272C361E00A6AA82 /* MKMessage.swift in Sources */,
 				AD8016392729218300A6AA82 /* Status.swift in Sources */,
 				AD801670272EC5F500A6AA82 /* FTypingListener.swift in Sources */,
 				AD9533D0273053F900481BEB /* MapAnnotation.swift in Sources */,
+				AD9533DD273137B300481BEB /* ChannelCell.swift in Sources */,
 				AD801631272830B100A6AA82 /* EditProfileViewController.swift in Sources */,
 				AD80164627296B8400A6AA82 /* RecentChat.swift in Sources */,
 				AD80163E27293E7600A6AA82 /* UserCell.swift in Sources */,

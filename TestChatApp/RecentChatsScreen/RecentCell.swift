@@ -55,7 +55,7 @@ class RecentCell: UITableViewCell {
                 case .success(let image):
                     self.avatarImageView.image = image.circleMasked
                 case .failure(_):
-                    self.avatarImageView.image = .avatar?
+                    self.avatarImageView.image = .avatar
                 }
             }
         }
