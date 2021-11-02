@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class ChannelsViewController: UITableViewController {
 
@@ -18,7 +19,6 @@ class ChannelsViewController: UITableViewController {
     private var allChannels: [Channel] = []
     private var subscribedChannels: [Channel] = []
 
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
@@ -26,6 +26,24 @@ class ChannelsViewController: UITableViewController {
         title = Const.title
         navigationItem.largeTitleDisplayMode = .always
         tableView.tableFooterView = UIView()
+        loadSubscribedChannels()
+        loadAllChannels()
+
+        refreshControl = UIRefreshControl()
+        tableView.refreshControl = refreshControl
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        FChannelListener.shared.removeListener()
+    }
+
+    @objc func refresh() {
+        if segmentControl.selectedSegmentIndex == 0 {
+            loadSubscribedChannels()
+        } else {
+            loadAllChannels()
+        }
     }
 
     // MARK: - Table view data source
@@ -42,11 +60,60 @@ class ChannelsViewController: UITableViewController {
         cell.configure(with: channel)
         return cell
     }
+
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if segmentControl.selectedSegmentIndex == 0 {
+            loadSubscribedChannels()
+        } else {
+            loadAllChannels()
+        }
+    }
 }
 
 // MARK: - Actions
 extension ChannelsViewController {
     @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
+        tableView.reloadData()
+    }
+}
+
+// MARK: - Private
+private extension ChannelsViewController {
+    func loadSubscribedChannels() {
+        FChannelListener.shared.loadSubscribedChannels { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let channels):
+                    self.subscribedChannels = channels
+                    self.refreshControl?.endRefreshing()
+                    if self.segmentControl.selectedSegmentIndex == 0 {
+                        self.tableView.reloadData()
+                    }
+
+                case .failure(let error):
+                    self.refreshControl?.endRefreshing()
+                    ProgressHUD.showError(error.localizedDescription)
+                }
+            }
+        }
+    }
+
+    func loadAllChannels() {
+        FChannelListener.shared.loadAllChannels { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let channels):
+                    self.allChannels = channels
+                    self.refreshControl?.endRefreshing()
+                    if self.segmentControl.selectedSegmentIndex != 0 {
+                        self.tableView.reloadData()
+                    }
+                case .failure(let error):
+                    self.refreshControl?.endRefreshing()
+                    ProgressHUD.showError(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 

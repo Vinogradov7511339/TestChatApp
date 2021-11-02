@@ -23,5 +23,7 @@ public let kLocationMessageType = "location"
 public let kCreatedDate = "createdAt"
 public let kReadDate = "readAt"
 public let kMessageStatus = "status"
+public let kChannelAdmin = "adminId"
+public let kChannelMember = "memberIds"
 
 public let kNumberOfMessages = 12

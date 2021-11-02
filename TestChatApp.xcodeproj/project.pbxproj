@@ -58,6 +58,9 @@
 		AD9533D8273133DD00481BEB /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533D7273133DD00481BEB /* ChannelsViewController.swift */; };
 		AD9533DB273135CE00481BEB /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533DA273135CE00481BEB /* Channel.swift */; };
 		AD9533DD273137B300481BEB /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533DC273137B300481BEB /* ChannelCell.swift */; };
+		AD9533DF2731429000481BEB /* MyChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533DE2731429000481BEB /* MyChannelsViewController.swift */; };
+		AD9533E1273142B700481BEB /* AddChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533E0273142B700481BEB /* AddChannelViewController.swift */; };
+		AD9533E3273178A800481BEB /* FChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533E2273178A800481BEB /* FChannelListener.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -122,6 +125,9 @@
 		AD9533D7273133DD00481BEB /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		AD9533DA273135CE00481BEB /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
 		AD9533DC273137B300481BEB /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		AD9533DE2731429000481BEB /* MyChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChannelsViewController.swift; sourceTree = "<group>"; };
+		AD9533E0273142B700481BEB /* AddChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelViewController.swift; sourceTree = "<group>"; };
+		AD9533E2273178A800481BEB /* FChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FChannelListener.swift; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -184,10 +190,10 @@
 			children = (
 				AD7150BA2725D47F0085E1C6 /* AppDelegate.swift */,
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
-				AD801656272C2FEE00A6AA82 /* ChatScreen */,
 				AD8016432729618900A6AA82 /* ProfileViewController.swift */,
-				AD9533D9273135B900481BEB /* ChannelsScreen */,
 				AD9533CD27304FC600481BEB /* MapViewController.swift */,
+				AD801656272C2FEE00A6AA82 /* ChatScreen */,
+				AD9533D9273135B900481BEB /* ChannelsScreen */,
 				AD801653272BE54800A6AA82 /* RecentChatsScreen */,
 				AD80164A27297C0400A6AA82 /* UsersListScreen */,
 				AD80164927297BF100A6AA82 /* LoginScreen */,
@@ -271,6 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				AD9533D7273133DD00481BEB /* ChannelsViewController.swift */,
+				AD9533DE2731429000481BEB /* MyChannelsViewController.swift */,
+				AD9533E0273142B700481BEB /* AddChannelViewController.swift */,
 				AD9533DC273137B300481BEB /* ChannelCell.swift */,
 			);
 			path = ChannelsScreen;
@@ -304,6 +312,7 @@
 				AD80164F2729933200A6AA82 /* FRecentListener.swift */,
 				AD80166B272C594700A6AA82 /* FMessageListener.swift */,
 				AD80166F272EC5F500A6AA82 /* FTypingListener.swift */,
+				AD9533E2273178A800481BEB /* FChannelListener.swift */,
 			);
 			path = FirebaseHelpers;
 			sourceTree = "<group>";
@@ -444,6 +453,7 @@
 				AD7150BF2725D47F0085E1C6 /* LoginViewController.swift in Sources */,
 				AD80166C272C594700A6AA82 /* FMessageListener.swift in Sources */,
 				AD801668272C49B600A6AA82 /* RealmManager.swift in Sources */,
+				AD9533E1273142B700481BEB /* AddChannelViewController.swift in Sources */,
 				ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */,
 				AD801633272849E400A6AA82 /* FileStorage.swift in Sources */,
 				AD9533C6272FEFBC00481BEB /* ImageMessage.swift in Sources */,
@@ -453,6 +463,7 @@
 				AD9533D627311E2900481BEB /* BasicAudioController.swift in Sources */,
 				AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */,
 				AD7150BB2725D47F0085E1C6 /* AppDelegate.swift in Sources */,
+				AD9533E3273178A800481BEB /* FChannelListener.swift in Sources */,
 				AD9533DB273135CE00481BEB /* Channel.swift in Sources */,
 				AD801662272C335C00A6AA82 /* MKHelpers.swift in Sources */,
 				ADBC205B2726D8CE003FEE82 /* LocalStorage.swift in Sources */,
@@ -464,6 +475,7 @@
 				AD801631272830B100A6AA82 /* EditProfileViewController.swift in Sources */,
 				AD80164627296B8400A6AA82 /* RecentChat.swift in Sources */,
 				AD80163E27293E7600A6AA82 /* UserCell.swift in Sources */,
+				AD9533DF2731429000481BEB /* MyChannelsViewController.swift in Sources */,
 				AD801660272C30A600A6AA82 /* InputBarAccessoryViewDelegate.swift in Sources */,
 				AD801666272C37F900A6AA82 /* LocalMessage.swift in Sources */,
 				AD80164827297BE500A6AA82 /* RecentCell.swift in Sources */,
