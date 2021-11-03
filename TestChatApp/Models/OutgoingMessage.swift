@@ -27,6 +27,28 @@ class OutgoingMessage {
         }
         FRecentListener.shared.updateRecent(chatroomId: chatId, lastMessage: message.message)
     }
+
+    class func send(to channel: Channel, text: String?, image: UIImage?, video: Video?, audio: String?, audioDuration: Float?, location: String?, memberIds: [String]) {
+        var channel = channel
+        let message = defaultMessage(chatId: channel.id)
+        if let text = text {
+            sendTextMessage(message, text: text, memberIds: memberIds, channel: channel)
+        } else if let image = image {
+            sendImageMessage(message, image: image, memberIds: memberIds, channel: channel)
+        } else if let video = video {
+            sendVideoMessage(message, video: video, memberIds: memberIds, channel: channel)
+        } else if location != nil {
+            sendLocationMessage(message, memberIds: memberIds, channel: channel)
+        } else if let audio = audio, let duration = audioDuration {
+            sendAudioMessage(message, audio: audio, duration: duration, memberIds: memberIds, channel: channel)
+        }
+        channel.updatedAt = Date()
+        FChannelListener.shared.upload(channel: channel) { error in
+            if let error = error {
+                assert(false, error.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - Private
@@ -44,13 +66,17 @@ private extension OutgoingMessage {
         return message
     }
 
-    class func sendTextMessage(_ message: LocalMessage, text: String, memberIds: [String]) {
+    class func sendTextMessage(_ message: LocalMessage, text: String, memberIds: [String], channel: Channel? = nil) {
         message.message = text
         message.type = kTextMessageType
-        send(message: message, memberIds: memberIds)
+        if let channel = channel {
+            send(to: channel, message: message)
+        } else {
+            send(message: message, memberIds: memberIds)
+        }
     }
 
-    class func sendImageMessage(_ message: LocalMessage, image: UIImage, memberIds: [String]) {
+    class func sendImageMessage(_ message: LocalMessage, image: UIImage, memberIds: [String], channel: Channel? = nil) {
         message.message = Const.image
         message.type = kImageMessageType
         let fileName = Date().string()
@@ -64,14 +90,18 @@ private extension OutgoingMessage {
             switch result {
             case .success(let imageURL):
                 message.imageURL = imageURL
-                send(message: message, memberIds: memberIds)
+                if let channel = channel {
+                    send(to: channel, message: message)
+                } else {
+                    send(message: message, memberIds: memberIds)
+                }
             case .failure(let error):
                 assert(false, error.localizedDescription)
             }
         }
     }
 
-    class func sendVideoMessage(_ message: LocalMessage, video: Video, memberIds: [String]) {
+    class func sendVideoMessage(_ message: LocalMessage, video: Video, memberIds: [String], channel: Channel? = nil) {
         message.message = Const.video
         message.type = kVideoMessageType
         let fileName = Date().string()
@@ -95,7 +125,11 @@ private extension OutgoingMessage {
                         case .success(let videoPath):
                             message.imageURL = thumbnailLink
                             message.videoURL = videoPath
-                            send(message: message, memberIds: memberIds)
+                            if let channel = channel {
+                                send(to: channel, message: message)
+                            } else {
+                                send(message: message, memberIds: memberIds)
+                            }
                         case .failure(let error):
                             assert(false, error.localizedDescription)
                         }
@@ -107,16 +141,20 @@ private extension OutgoingMessage {
         }
     }
 
-    class func sendLocationMessage(_ message: LocalMessage, memberIds: [String]) {
+    class func sendLocationMessage(_ message: LocalMessage, memberIds: [String], channel: Channel? = nil) {
         let location = LocationManager.shared.currentLocation
         message.message = Const.location
         message.type = kLocationMessageType
         message.latitude = location?.latitude ?? 0.0
         message.longitude = location?.longitude ?? 0.0
-        send(message: message, memberIds: memberIds)
+        if let channel = channel {
+            send(to: channel, message: message)
+        } else {
+            send(message: message, memberIds: memberIds)
+        }
     }
 
-    class func sendAudioMessage(_ message: LocalMessage, audio: String, duration: Float, memberIds: [String]) {
+    class func sendAudioMessage(_ message: LocalMessage, audio: String, duration: Float, memberIds: [String], channel: Channel? = nil) {
         message.message = Const.audio
         message.type = kAudioMessageType
         let filePath = "MediaMessages/Audio/" + message.chatRoomId + "_\(audio)" + ".m4a"
@@ -125,7 +163,11 @@ private extension OutgoingMessage {
             case .success(let pathToFile):
                 message.audioURL = pathToFile
                 message.audioDuration = Double(duration)
-                send(message: message, memberIds: memberIds)
+                if let channel = channel {
+                    send(to: channel, message: message)
+                } else {
+                    send(message: message, memberIds: memberIds)
+                }
             case .failure(let error):
                 assert(false, error.localizedDescription)
             }
@@ -135,6 +177,11 @@ private extension OutgoingMessage {
     class func send(message: LocalMessage, memberIds: [String]) {
         RealmManager.shared.save(message)
         memberIds.forEach { FMessageListener.shared.add(message: message, memberId: $0) }
+    }
+
+    class func send(to channel: Channel, message: LocalMessage) {
+        RealmManager.shared.save(message)
+        FMessageListener.shared.add(to: channel, message: message)
     }
 }
 

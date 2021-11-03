@@ -204,14 +204,14 @@ class ChannelChatViewController: MessagesViewController {
                      audio: String?,
                      location: String?,
                      audioDuration: Float?) {
-        OutgoingMessage.send(chatId: chatId,
+        OutgoingMessage.send(to: channel,
                              text: text,
                              image: image,
                              video: video,
                              audio: audio,
                              audioDuration: audioDuration,
                              location: location,
-                             memberIds: [User.currentId!, recipientId])
+                             memberIds: channel.memberIds)
     }
 
     func loadMessages() {

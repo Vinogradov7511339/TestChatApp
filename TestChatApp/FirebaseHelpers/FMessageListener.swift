@@ -29,6 +29,18 @@ class FMessageListener {
         }
     }
 
+    func add(to channel: Channel, message: LocalMessage) {
+        do {
+            let _ = try FirebaseReference(.messages)
+                .document(channel.id)
+                .collection(channel.id)
+                .document(message.id)
+                .setData(from: message)
+        } catch {
+            assert(false, error.localizedDescription)
+        }
+    }
+
     // TODO: - change local params names
     func checkForOldChats(_ documentId: String, collectionId: String) {
         FirebaseReference(.messages).document(documentId).collection(collectionId).getDocuments { snapshot, error in
