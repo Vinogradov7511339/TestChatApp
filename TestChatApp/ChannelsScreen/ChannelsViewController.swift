@@ -35,7 +35,7 @@ class ChannelsViewController: UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        FChannelListener.shared.removeListener()
+//        FChannelListener.shared.removeListener()
     }
 
     @objc func refresh() {
@@ -59,6 +59,27 @@ class ChannelsViewController: UITableViewController {
         let channel = segmentControl.selectedSegmentIndex == 0 ? subscribedChannels[indexPath.row] : allChannels[indexPath.row]
         cell.configure(with: channel)
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let channel = segmentControl.selectedSegmentIndex == 0 ? subscribedChannels[indexPath.row] : allChannels[indexPath.row]
+        if channel.memberIds.contains(User.currentId!) {
+            open(channel: channel)
+        } else {
+            showChannelDetails(channel)
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        let channel = segmentControl.selectedSegmentIndex == 0 ? subscribedChannels[indexPath.row] : allChannels[indexPath.row]
+        return channel.adminId != User.currentId! && channel.memberIds.contains(User.currentId!)
+    }
+
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let channel = segmentControl.selectedSegmentIndex == 0 ? subscribedChannels[indexPath.row] : allChannels[indexPath.row]
+        unfollow(from: channel)
     }
 
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -114,6 +135,39 @@ private extension ChannelsViewController {
                 }
             }
         }
+    }
+
+    func unfollow(from channel: Channel) {
+        var updatedChannel = channel
+        updatedChannel.memberIds = channel.memberIds.filter { $0 != User.currentId! }
+        FChannelListener.shared.upload(channel: updatedChannel) { error in
+            if let error = error {
+                ProgressHUD.showError(error.localizedDescription)
+                return
+            }
+            DispatchQueue.main.async {
+                self.subscribedChannels.removeAll(where: { $0.id == channel.id })
+            }
+        }
+    }
+}
+
+// MARK: - Navigation
+private extension ChannelsViewController {
+    func showChannelDetails(_ channel: Channel) {
+        let controller = UIStoryboard(name: "Main", bundle: nil)
+            .instantiateViewController(withIdentifier: "channelDetailController")
+        guard let controller = controller as? ChannelDetailsViewController else {
+            return
+        }
+        controller.channel = channel
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func open(channel: Channel) {
+        let controller = ChannelChatViewController(channel: channel)
+        controller.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(controller, animated: true)
     }
 }
 

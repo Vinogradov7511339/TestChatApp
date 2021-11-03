@@ -61,6 +61,13 @@
 		AD9533DF2731429000481BEB /* MyChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533DE2731429000481BEB /* MyChannelsViewController.swift */; };
 		AD9533E1273142B700481BEB /* AddChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533E0273142B700481BEB /* AddChannelViewController.swift */; };
 		AD9533E3273178A800481BEB /* FChannelListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533E2273178A800481BEB /* FChannelListener.swift */; };
+		AD9533E52731A17F00481BEB /* ChannelDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533E42731A17F00481BEB /* ChannelDetailsViewController.swift */; };
+		AD9533E72732896000481BEB /* ChannelChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533E62732896000481BEB /* ChannelChatViewController.swift */; };
+		AD9533EA27328E2B00481BEB /* ChannelChat+MessagesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533E927328E2B00481BEB /* ChannelChat+MessagesDataSource.swift */; };
+		AD9533EC27328E4E00481BEB /* ChannelChat+MessageCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533EB27328E4E00481BEB /* ChannelChat+MessageCellDelegate.swift */; };
+		AD9533EE27328E7300481BEB /* ChannelChat+MessagesDisplayDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533ED27328E7300481BEB /* ChannelChat+MessagesDisplayDelegate.swift */; };
+		AD9533F027328E9500481BEB /* ChannelChat+MessagesLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533EF27328E9500481BEB /* ChannelChat+MessagesLayoutDelegate.swift */; };
+		AD9533F227328EBE00481BEB /* ChannelChat+InputBarAccessoryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9533F127328EBE00481BEB /* ChannelChat+InputBarAccessoryViewDelegate.swift */; };
 		ADBC204F27268E0F003FEE82 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */; };
 		ADBC20512726C7FB003FEE82 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20502726C7FB003FEE82 /* User.swift */; };
 		ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADBC20532726CACD003FEE82 /* GlobalConstants.swift */; };
@@ -128,6 +135,13 @@
 		AD9533DE2731429000481BEB /* MyChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyChannelsViewController.swift; sourceTree = "<group>"; };
 		AD9533E0273142B700481BEB /* AddChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChannelViewController.swift; sourceTree = "<group>"; };
 		AD9533E2273178A800481BEB /* FChannelListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FChannelListener.swift; sourceTree = "<group>"; };
+		AD9533E42731A17F00481BEB /* ChannelDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelDetailsViewController.swift; sourceTree = "<group>"; };
+		AD9533E62732896000481BEB /* ChannelChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelChatViewController.swift; sourceTree = "<group>"; };
+		AD9533E927328E2B00481BEB /* ChannelChat+MessagesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelChat+MessagesDataSource.swift"; sourceTree = "<group>"; };
+		AD9533EB27328E4E00481BEB /* ChannelChat+MessageCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelChat+MessageCellDelegate.swift"; sourceTree = "<group>"; };
+		AD9533ED27328E7300481BEB /* ChannelChat+MessagesDisplayDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelChat+MessagesDisplayDelegate.swift"; sourceTree = "<group>"; };
+		AD9533EF27328E9500481BEB /* ChannelChat+MessagesLayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelChat+MessagesLayoutDelegate.swift"; sourceTree = "<group>"; };
+		AD9533F127328EBE00481BEB /* ChannelChat+InputBarAccessoryViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChannelChat+InputBarAccessoryViewDelegate.swift"; sourceTree = "<group>"; };
 		ADBC204E27268E0F003FEE82 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		ADBC20502726C7FB003FEE82 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ADBC20532726CACD003FEE82 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
@@ -192,6 +206,7 @@
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
 				AD8016432729618900A6AA82 /* ProfileViewController.swift */,
 				AD9533CD27304FC600481BEB /* MapViewController.swift */,
+				AD9533E827328E0800481BEB /* ChannelChat */,
 				AD801656272C2FEE00A6AA82 /* ChatScreen */,
 				AD9533D9273135B900481BEB /* ChannelsScreen */,
 				AD801653272BE54800A6AA82 /* RecentChatsScreen */,
@@ -279,9 +294,23 @@
 				AD9533D7273133DD00481BEB /* ChannelsViewController.swift */,
 				AD9533DE2731429000481BEB /* MyChannelsViewController.swift */,
 				AD9533E0273142B700481BEB /* AddChannelViewController.swift */,
+				AD9533E42731A17F00481BEB /* ChannelDetailsViewController.swift */,
 				AD9533DC273137B300481BEB /* ChannelCell.swift */,
 			);
 			path = ChannelsScreen;
+			sourceTree = "<group>";
+		};
+		AD9533E827328E0800481BEB /* ChannelChat */ = {
+			isa = PBXGroup;
+			children = (
+				AD9533E62732896000481BEB /* ChannelChatViewController.swift */,
+				AD9533E927328E2B00481BEB /* ChannelChat+MessagesDataSource.swift */,
+				AD9533EB27328E4E00481BEB /* ChannelChat+MessageCellDelegate.swift */,
+				AD9533ED27328E7300481BEB /* ChannelChat+MessagesDisplayDelegate.swift */,
+				AD9533EF27328E9500481BEB /* ChannelChat+MessagesLayoutDelegate.swift */,
+				AD9533F127328EBE00481BEB /* ChannelChat+InputBarAccessoryViewDelegate.swift */,
+			);
+			path = ChannelChat;
 			sourceTree = "<group>";
 		};
 		ADBC20522726C817003FEE82 /* Models */ = {
@@ -433,6 +462,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD9533EC27328E4E00481BEB /* ChannelChat+MessageCellDelegate.swift in Sources */,
 				AD9533D8273133DD00481BEB /* ChannelsViewController.swift in Sources */,
 				AD80165A272C304D00A6AA82 /* MessageCellDelegate.swift in Sources */,
 				AD80166E272D360E00A6AA82 /* IncomingMessage.swift in Sources */,
@@ -446,6 +476,7 @@
 				AD801658272C300700A6AA82 /* MessagesDataSource.swift in Sources */,
 				ADBC20512726C7FB003FEE82 /* User.swift in Sources */,
 				AD9533CE27304FC600481BEB /* MapViewController.swift in Sources */,
+				AD9533E52731A17F00481BEB /* ChannelDetailsViewController.swift in Sources */,
 				AD801637272870BC00A6AA82 /* UIImage+circle.swift in Sources */,
 				AD80165E272C309000A6AA82 /* MessagesLayoutDelegate.swift in Sources */,
 				AD80166A272C4D2400A6AA82 /* OutgoingMessage.swift in Sources */,
@@ -455,6 +486,7 @@
 				AD801668272C49B600A6AA82 /* RealmManager.swift in Sources */,
 				AD9533E1273142B700481BEB /* AddChannelViewController.swift in Sources */,
 				ADBC20542726CACD003FEE82 /* GlobalConstants.swift in Sources */,
+				AD9533F227328EBE00481BEB /* ChannelChat+InputBarAccessoryViewDelegate.swift in Sources */,
 				AD801633272849E400A6AA82 /* FileStorage.swift in Sources */,
 				AD9533C6272FEFBC00481BEB /* ImageMessage.swift in Sources */,
 				AD9533CC27302DA900481BEB /* LocationAttachment.swift in Sources */,
@@ -464,6 +496,7 @@
 				AD80163B2729253A00A6AA82 /* StatusViewController.swift in Sources */,
 				AD7150BB2725D47F0085E1C6 /* AppDelegate.swift in Sources */,
 				AD9533E3273178A800481BEB /* FChannelListener.swift in Sources */,
+				AD9533EE27328E7300481BEB /* ChannelChat+MessagesDisplayDelegate.swift in Sources */,
 				AD9533DB273135CE00481BEB /* Channel.swift in Sources */,
 				AD801662272C335C00A6AA82 /* MKHelpers.swift in Sources */,
 				ADBC205B2726D8CE003FEE82 /* LocalStorage.swift in Sources */,
@@ -480,12 +513,15 @@
 				AD801666272C37F900A6AA82 /* LocalMessage.swift in Sources */,
 				AD80164827297BE500A6AA82 /* RecentCell.swift in Sources */,
 				AD7150BD2725D47F0085E1C6 /* SceneDelegate.swift in Sources */,
+				AD9533F027328E9500481BEB /* ChannelChat+MessagesLayoutDelegate.swift in Sources */,
 				ADBC20592726D3F5003FEE82 /* FUserListener.swift in Sources */,
 				AD9533CA273025EA00481BEB /* LocationManager.swift in Sources */,
 				AD8016502729933200A6AA82 /* FRecentListener.swift in Sources */,
 				AD80162F2728198200A6AA82 /* UIColor+names.swift in Sources */,
 				AD8016442729618A00A6AA82 /* ProfileViewController.swift in Sources */,
+				AD9533EA27328E2B00481BEB /* ChannelChat+MessagesDataSource.swift in Sources */,
 				AD8016422729408000A6AA82 /* UIImage+names.swift in Sources */,
+				AD9533E72732896000481BEB /* ChannelChatViewController.swift in Sources */,
 				AD801652272BE4E900A6AA82 /* RecentChatsViewController.swift in Sources */,
 				AD80164027293EB100A6AA82 /* UsersViewController.swift in Sources */,
 				AD80165C272C308200A6AA82 /* MessagesDisplayDelegate.swift in Sources */,

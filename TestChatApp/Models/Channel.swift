@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Channel: Codable {
+struct Channel: Codable, Equatable {
     let id: String
     var name: String
     let adminId: String
@@ -17,4 +17,8 @@ struct Channel: Codable {
     var about: String = ""
     @ServerTimestamp var createdAt: Date?
     @ServerTimestamp var updatedAt: Date?
+
+    static func == (lhs: Channel, rhs: Channel) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
