@@ -72,6 +72,4 @@ class AudioRecorder: NSObject {
 }
 
 // MARK: - AVAudioRecorderDelegate
-extension AudioRecorder: AVAudioRecorderDelegate {
-
-}
+extension AudioRecorder: AVAudioRecorderDelegate {}
