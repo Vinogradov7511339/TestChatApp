@@ -8,15 +8,12 @@
 import Foundation
 
 enum Status: String, CaseIterable {
-    case available = "Available"
-    case busy = "Busy"
-    case atSchool = "At School"
-    case atTheMovies = "At The Movies"
-    case atWork = "At Work"
-    case batteryAboutToDie = "Battery About to die"
-    case cantTalk = "Can't talk"
-    case inAMeeting = "In a meeting"
-    case atTheGym = "At the gym"
-    case sleeping = "Sleeping"
-    case urgentCallsOnly = "Urgent calls only"
+    case chrisMannix = "New Sheriff of Red Rock"
+    case joeGage = "Cowboy who’s heading home"
+    case daisyDomergue = "John Ruth’s prisoner"
+    case sanfordSmithers = "Red Rock’s resident hangman"
+    case batteryAboutToDie = "General “Sandy”"
+    case senorBob = "Marco “the Mexican”"
+    case johnRuth = "The Hangman"
+    case marquisWarren = "Major Marquis Warren"
 }

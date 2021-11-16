@@ -236,7 +236,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="En2-aq-qfS">
-                                            <rect key="frame" x="88" y="48" width="288.5" height="22"/>
+                                            <rect key="frame" x="88" y="42" width="288.5" height="22"/>
                                             <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -247,7 +247,7 @@
                                         <constraint firstItem="l4b-lT-j5H" firstAttribute="leading" secondItem="Z4K-JA-uiA" secondAttribute="leading" constant="20" symbolic="YES" id="K0e-r6-3F7"/>
                                         <constraint firstItem="En2-aq-qfS" firstAttribute="leading" secondItem="l4b-lT-j5H" secondAttribute="trailing" constant="8" symbolic="YES" id="TZI-jQ-bNe"/>
                                         <constraint firstAttribute="trailing" secondItem="yWi-0c-cQu" secondAttribute="trailing" constant="8" id="Xf7-2E-5IU"/>
-                                        <constraint firstAttribute="bottom" secondItem="En2-aq-qfS" secondAttribute="bottom" constant="10" id="dEc-HM-b9t"/>
+                                        <constraint firstAttribute="bottom" secondItem="En2-aq-qfS" secondAttribute="bottom" constant="16" id="dEc-HM-b9t"/>
                                         <constraint firstItem="yWi-0c-cQu" firstAttribute="top" secondItem="Z4K-JA-uiA" secondAttribute="top" constant="10" id="h5h-YC-UXt"/>
                                         <constraint firstAttribute="trailing" secondItem="En2-aq-qfS" secondAttribute="trailing" constant="8" id="uw3-Sw-mwa"/>
                                         <constraint firstItem="yWi-0c-cQu" firstAttribute="leading" secondItem="l4b-lT-j5H" secondAttribute="trailing" constant="8" symbolic="YES" id="wKd-9z-htZ"/>
@@ -993,7 +993,7 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="about channel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pG-hU-dXj">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="about channel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8pG-hU-dXj">
                                             <rect key="frame" x="74" y="40" width="294.5" height="18"/>
                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

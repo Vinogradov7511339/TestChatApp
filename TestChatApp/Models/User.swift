@@ -46,19 +46,18 @@ struct User: Codable, Equatable {
 // MARK: - Mock data
 extension User {
     static func mockUsers() {
-        let names = ["Alison Stamp", "Inayah Duggan", "Alfie Thornton", "Rachelle Neale", "Anya Gates", "Juanita Bate",
-                     "Alison Stamp", "Inayah Duggan", "Alfie Thornton", "Rachelle Neale", "Anya Gates", "Juanita Bate",
-                     "Alison Stamp", "Inayah Duggan", "Alfie Thornton", "Rachelle Neale", "Anya Gates", "Juanita Bate"]
+        let names = ["Chris_Mannix", "Joe_Gage", "Daisy_Domergue", "Oswaldo_Mobray", "Sanford_Smithers", "Señor_Bob"]
         for (index, status) in Status.allCases.enumerated() {
-            if index > 4 { return }
+            if index > 5 { return }
             let id = UUID().uuidString
             let fileDirectory = "Avatars/_" + id + ".jpg"
-            let image = UIImage(named: "user\(index)")!
+            let image = UIImage(named: names[index])!
             FileStorage.uploadImage(image, directory: fileDirectory) { result in
                 switch result {
                 case .success(let link):
+                    let name = names[index].replacingOccurrences(of: "_", with: " ")
                     let user = User(id: id,
-                                    username: names[index],
+                                    username: name,
                                     email: "user\(index)@gmail.com",
                                     pushId: nil,
                                     avatarLink: link,
@@ -69,6 +68,7 @@ extension User {
                         }
                     }
                 case .failure(let error):
+                    assertionFailure(error.localizedDescription)
                     break
                 }
             }

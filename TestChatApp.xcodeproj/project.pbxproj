@@ -677,6 +677,11 @@
 				DEVELOPMENT_TEAM = PAQ9ML4C7G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestChatApp/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your media";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your camera";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your location";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your microphone";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -707,6 +712,11 @@
 				DEVELOPMENT_TEAM = PAQ9ML4C7G;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TestChatApp/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your media";
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your camera";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your location";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your microphone";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "$(PRODUCT_MODULE_NAME) would like to use your photo library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
