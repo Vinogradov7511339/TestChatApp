@@ -204,19 +204,15 @@
 			children = (
 				AD7150BA2725D47F0085E1C6 /* AppDelegate.swift */,
 				AD7150BC2725D47F0085E1C6 /* SceneDelegate.swift */,
+				ADAAE3F42743D3DA00A852CE /* AudioHelpers */,
 				ADAAE3F22743D1FE00A852CE /* Scenes */,
 				ADAAE3F32743D25F00A852CE /* Functions */,
-				ADBC205A2726D8CE003FEE82 /* LocalStorage.swift */,
-				ADBC20532726CACD003FEE82 /* GlobalConstants.swift */,
-				AD9533D527311E2900481BEB /* BasicAudioController.swift */,
-				AD9533D12730653800481BEB /* AudioRecorder.swift */,
-				AD9533C9273025EA00481BEB /* LocationManager.swift */,
-				AD801667272C49B600A6AA82 /* RealmManager.swift */,
-				AD801632272849E400A6AA82 /* FileStorage.swift */,
-				AD801661272C335C00A6AA82 /* MKHelpers.swift */,
+				ADAAE3F62743D44400A852CE /* Managers */,
+				ADAAE3F52743D40B00A852CE /* Storage */,
 				ADBC20572726D083003FEE82 /* FirebaseHelpers */,
 				ADBC20522726C817003FEE82 /* Models */,
 				ADAAE3F12743D1DC00A852CE /* Extensions */,
+				ADBC20532726CACD003FEE82 /* GlobalConstants.swift */,
 				AD7150C32725D4820085E1C6 /* Assets.xcassets */,
 				AD7150C52725D4820085E1C6 /* LaunchScreen.storyboard */,
 				AD7150C02725D47F0085E1C6 /* Main.storyboard */,
@@ -337,12 +333,40 @@
 			path = Functions;
 			sourceTree = "<group>";
 		};
+		ADAAE3F42743D3DA00A852CE /* AudioHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				AD9533D527311E2900481BEB /* BasicAudioController.swift */,
+				AD9533D12730653800481BEB /* AudioRecorder.swift */,
+			);
+			path = AudioHelpers;
+			sourceTree = "<group>";
+		};
+		ADAAE3F52743D40B00A852CE /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				AD801632272849E400A6AA82 /* FileStorage.swift */,
+				ADBC205A2726D8CE003FEE82 /* LocalStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		ADAAE3F62743D44400A852CE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				AD9533C9273025EA00481BEB /* LocationManager.swift */,
+				AD801667272C49B600A6AA82 /* RealmManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		ADBC20522726C817003FEE82 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				ADBC20502726C7FB003FEE82 /* User.swift */,
 				AD8016382729218300A6AA82 /* Status.swift */,
 				AD80164527296B8400A6AA82 /* RecentChat.swift */,
+				AD801661272C335C00A6AA82 /* MKHelpers.swift */,
 				AD801663272C361E00A6AA82 /* MKMessage.swift */,
 				AD801665272C37F900A6AA82 /* LocalMessage.swift */,
 				AD801669272C4D2400A6AA82 /* OutgoingMessage.swift */,
